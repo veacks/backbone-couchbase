@@ -1,0 +1,43 @@
+{
+  "name": "backbone-couchbase",
+  "version": "0.0.0",
+  "description": "Couchbase Sync for Backbone Models and Collections (server side only)",
+  "main": "index.js",
+  "scripts": {
+    "test": "grunt test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/veacks/backbone-couchbase.git"
+  },
+  "keywords": [
+    "Backbone",
+    "Couchbase",
+    "Sync"
+  ],
+  "author": "Valentin Dubois",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/veacks/backbone-couchbase/issues"
+  },
+  "homepage": "https://github.com/veacks/backbone-couchbase",
+  "dependencies": {
+    "couchbase": "~2.0.2",
+    "q": "~1.1.2",
+    "node-uuid": "~1.4.2",
+    "underscore": "~1.7.0"
+  },
+  "devDependencies": {
+    "grunt": "~0.4.5",
+    "mocha": "~2.1.0",
+    "sinon": "~1.12.2",
+    "chai": "~1.10.0",
+    "grunt-mocha-cli": "~1.11.0",
+    "grunt-config-dir": "~0.3.2",
+    "coffee": "0.0.1",
+    "coffee-script": "~1.8.0",
+    "grunt-contrib-coffee": "~0.12.0",
+    "grunt-contrib-watch": "~0.6.1",
+    "backbone": "~1.1.2"
+  }
+}

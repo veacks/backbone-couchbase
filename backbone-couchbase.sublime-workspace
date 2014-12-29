@@ -1,0 +1,815 @@
+{
+	"auto_complete":
+	{
+		"selected_items":
+		[
+			[
+				"user",
+				"username"
+			],
+			[
+				"font",
+				"font-size"
+			],
+			[
+				"exv",
+				"exvid-related-videos"
+			],
+			[
+				"a-z",
+				"a-zA-Z0-9"
+			],
+			[
+				"a-",
+				"a-zA-Z0-9"
+			],
+			[
+				"az",
+				"a-zA-Z0-9"
+			],
+			[
+				"margin",
+				"margin-left"
+			],
+			[
+				"text",
+				"text-transform"
+			],
+			[
+				"select",
+				"selected"
+			],
+			[
+				"fa",
+				"fa-minus-circle"
+			],
+			[
+				"te",
+				"text-align"
+			],
+			[
+				"opt",
+				"option	Tag"
+			],
+			[
+				"ca",
+				"carousel-tit"
+			],
+			[
+				"yo",
+				"youtubeId"
+			],
+			[
+				"table",
+				"table-cell"
+			],
+			[
+				"fir",
+				"first-child"
+			],
+			[
+				"loa",
+				"Loading"
+			],
+			[
+				"MS",
+				"MSurveyAnswer"
+			],
+			[
+				"bre",
+				"word-break"
+			],
+			[
+				"reset",
+				"resetPassword"
+			],
+			[
+				"the",
+				"then"
+			],
+			[
+				"pull",
+				"pull-right"
+			],
+			[
+				"cl",
+				"clear"
+			],
+			[
+				"bor",
+				"border"
+			],
+			[
+				"g",
+				"glyphicon"
+			],
+			[
+				"li",
+				"list-inline"
+			],
+			[
+				"im",
+				"important"
+			],
+			[
+				"fet",
+				"fetched"
+			],
+			[
+				"e",
+				"e"
+			],
+			[
+				"clear",
+				"clearfix"
+			],
+			[
+				"tran",
+				"transition"
+			],
+			[
+				"pull-",
+				"pull-left"
+			],
+			[
+				"an",
+				"answer"
+			],
+			[
+				"crf",
+				"csrf-token"
+			],
+			[
+				"a",
+				"a"
+			],
+			[
+				"u",
+				"uppercase"
+			],
+			[
+				"tex",
+				"text-transform"
+			],
+			[
+				"de",
+				"delegateEvents"
+			],
+			[
+				"font-",
+				"font-size"
+			],
+			[
+				"color",
+				"color-yellow"
+			],
+			[
+				"class",
+				"className"
+			],
+			[
+				"overflow",
+				"overflow-x"
+			],
+			[
+				"th",
+				"th	Tag"
+			],
+			[
+				"se",
+				"select"
+			],
+			[
+				"i",
+				"if	if … end"
+			],
+			[
+				"no",
+				"none"
+			],
+			[
+				"video",
+				"video-js"
+			],
+			[
+				"has",
+				"hasClass"
+			],
+			[
+				"inser",
+				"insertAfter"
+			],
+			[
+				"last",
+				"last-child"
+			],
+			[
+				"set",
+				"setTimeout"
+			],
+			[
+				"r",
+				"return"
+			],
+			[
+				"list",
+				"list-style"
+			],
+			[
+				"bo",
+				"both"
+			],
+			[
+				"no-c",
+				"submit-no-connection"
+			],
+			[
+				"is",
+				"isnt"
+			],
+			[
+				"ser",
+				"serialize"
+			],
+			[
+				"re",
+				"repeat-y"
+			]
+		]
+	},
+	"buffers":
+	[
+	],
+	"build_system": "",
+	"command_palette":
+	{
+		"height": 287.0,
+		"selected_items":
+		[
+			[
+				"Package Control: install",
+				"Package Control: Install Package"
+			],
+			[
+				"Package Control: ",
+				"Package Control: Install Package"
+			],
+			[
+				"live",
+				"Package Control: Discover Packages"
+			],
+			[
+				"Package Control: i",
+				"Package Control: Install Package"
+			]
+		],
+		"width": 485.0
+	},
+	"console":
+	{
+		"height": 125.0
+	},
+	"distraction_free":
+	{
+		"menu_visible": true,
+		"show_minimap": false,
+		"show_open_files": false,
+		"show_tabs": false,
+		"side_bar_visible": true,
+		"status_bar_visible": false
+	},
+	"file_history":
+	[
+		"/Users/valentin/Sites/plm/public/templates/layouts/master.dust",
+		"/Users/valentin/Sites/plm/public/js/app.coffee",
+		"/Users/valentin/Sites/plm/public/templates/cms/blocks/block_base.dust",
+		"/Users/valentin/Sites/plm/public/templates/cms/blocks/text.dust",
+		"/Users/valentin/Sites/plm/public/templates/cms/blocks/text_edit.dust",
+		"/Users/valentin/Sites/plm/public/templates/cms/blocks/block_edit.dust",
+		"/Users/valentin/Sites/plm/public/js/collections/UsersCollection.coffee",
+		"/Users/valentin/Sites/plm/public/js/views/EditView.coffee",
+		"/Users/valentin/Sites/plm/public/templates/user/user_item.dust",
+		"/Users/valentin/Sites/plm/public/templates/cms/page_part.dust",
+		"/Users/valentin/Sites/plm/public/templates/cms/blocks/text-block/edit.dust",
+		"/Users/valentin/Sites/plm/public/templates/cms/blocks/text-block/block.dust",
+		"/Users/valentin/Sites/plm/public/templates/cms/blocks/block_header.dust",
+		"/Users/valentin/Sites/plm/public/templates/cms/blocks/edit_block.dust",
+		"/Users/valentin/Sites/plm/public/templates/cms/blocks/header_block.dust",
+		"/Users/valentin/Sites/plm/public/templates/cms/blocks/base_block.dust",
+		"/Users/valentin/Sites/plm/public/templates/login/login_part.dust",
+		"/Users/valentin/Sites/plm/models/backbone/users/LoginModel.coffee",
+		"/Users/valentin/Sites/plm/controllers/login-old/index.coffee",
+		"/Users/valentin/Sites/plm/controllers/login/index.coffee",
+		"/Users/valentin/Sites/plm/controllers/users/index.coffee",
+		"/Users/valentin/Sites/plm/controllers/register/index.coffee",
+		"/Users/valentin/Sites/plm/.gitignore",
+		"/Users/valentin/Sites/plm/models/backbone/users/UsernameModel.coffee",
+		"/Users/valentin/Sites/plm/models/backbone/users/UserModel.coffee",
+		"/Users/valentin/Sites/plm/lib/backbone-couchbase-sync.coffee",
+		"/Users/valentin/Sites/plm/lib/database.coffee",
+		"/Users/valentin/Sites/plm/.build/css/site.css",
+		"/Users/valentin/Sites/plm/public/css/site.scss",
+		"/Users/valentin/Sites/plm/models/backbone/users/RegisterModel.coffee",
+		"/Users/valentin/Sites/plm/controllers/register-old/index.coffee",
+		"/Users/valentin/Sites/plm/models/user/user.coffee",
+		"/Users/valentin/Sites/plm/package.json",
+		"/Users/valentin/Sites/plm/config/config.json",
+		"/Users/valentin/Sites/plm/lib/auth.coffee",
+		"/Users/valentin/Sites/plm/public/templates/user/edit.dust",
+		"/Users/valentin/Sites/plm/public/templates/user/profile.dust",
+		"/Users/valentin/Sites/plm/public/templates/register/index.dust",
+		"/Users/valentin/Sites/plm/public/templates/register/register_part.dust",
+		"/Users/valentin/Sites/plm/test/models/CMS/page.coffee",
+		"/Users/valentin/Sites/plm/public/templates/user/index.dust",
+		"/Users/vdubois/Sites/AITSL/trunk/AITSL/public/sass/parts/_article.scss",
+		"/Users/vdubois/Sites/AITSL/trunk/AITSL/public/sass/parts/_layout.scss",
+		"/Users/vdubois/Sites/AITSL/trunk/AITSL/public/sass/parts/_tools.scss",
+		"/Users/vdubois/Sites/AITSL/trunk/AITSL/public/sass/parts/_ts-content.scss",
+		"/Users/vdubois/Sites/AITSL/trunk/AITSL/public/sass/vendor/bootstrap-sass/bootstrap/_list-group.scss",
+		"/Users/vdubois/Sites/AITSL/trunk/AITSL/public/sass/vendor/bootstrap-sass/bootstrap/_mixins.scss",
+		"/Users/valentin/Sites/ESA/AITSL/CMS/trunk/AITSL/UserControls/Login/FrontendLogin.ascx",
+		"/Users/vdubois/Sites/AITSL/trunk/AITSL/public/sass/parts/_login.scss",
+		"/Users/vdubois/Sites/AITSL/trunk/AITSL/public/sass/site.scss",
+		"/Users/valentin/Sites/ESA/AITSL/CMS/trunk/AITSL/UserControls/Login/FrontendLogin.ascx.cs",
+		"/Users/valentin/Sites/ESA/AITSL/CMS/trunk/AITSL/public/sass/vendor/bootstrap-sass/bootstrap/_mixins.scss",
+		"/Users/valentin/Sites/ESA/AITSL/CMS/trunk/AITSL/public/sass/vendor/bootstrap-sass/bootstrap/_grid.scss",
+		"/Users/valentin/Sites/ESA/AITSL/CMS/trunk/AITSL/public/sass/vendor/bootstrap-sass/bootstrap/_panels.scss",
+		"/Users/valentin/Sites/ESA/AITSL/CMS/trunk/AITSL/public/sass/parts/_search.scss",
+		"/Users/valentin/Sites/ESA/AITSL/CMS/trunk/AITSL/public/sass/parts/_conferences.scss",
+		"/Users/valentin/Sites/ESA/AITSL/CMS/trunk/AITSL/public/sass/vendor/bootstrap-sass/bootstrap/_tooltip.scss",
+		"/Users/valentin/Sites/ESA/AITSL/CMS/trunk/AITSL/public/sass/parts/_iop-detail.scss",
+		"/Users/valentin/Sites/ESA/AITSL/CMS/trunk/AITSL/public/sass/vendor/bootstrap-sass/bootstrap/_navbar.scss",
+		"/Users/valentin/Sites/ESA/AITSL/CMS/trunk/AITSL/public/sass/vendor/bootstrap-sass/bootstrap/_type.scss",
+		"/Users/valentin/Sites/ESA/AITSL/CMS/trunk/AITSL/public/sass/vendor/bootstrap-sass/bootstrap/_component-animations.scss",
+		"/Users/valentin/Sites/ESA/AITSL/CMS/trunk/AITSL/public/coffee/app/app.coffee",
+		"/Users/valentin/Sites/ESA/AITSL/CMS/trunk/AITSL/public/sass/vendor/bootstrap-sass/bootstrap.scss",
+		"/Users/valentin/Sites/ESA/AITSL/CMS/trunk/AITSL/public/sass/parts/_header.scss",
+		"/Users/valentin/Sites/ESA/AITSL/CMS/trunk/AITSL/public/sass/parts/_nav.scss",
+		"/Users/valentin/Sites/ESA/AITSL/CMS/trunk/AITSL/public/sass/parts/_research.scss",
+		"/Users/valentin/Sites/ESA/AITSL/CMS/trunk/AITSL/public/sass/parts/_carousel.scss",
+		"/Users/valentin/Sites/ESA/AITSL/CMS/trunk/AITSL/public/sass/parts/_my-folder.scss",
+		"/Users/valentin/Sites/ESA/AITSL/CMS/trunk/AITSL/public/my-folder.html",
+		"/Users/valentin/Sites/ESA/AITSL/CMS/trunk/AITSL/public/sass/vendor/bootstrap-sass/bootstrap/_buttons.scss",
+		"/Users/valentin/Sites/ESA/AITSL/CMS/trunk/AITSL/public/sass/vendor/bootstrap-sass/bootstrap/_close.scss",
+		"/Users/valentin/Sites/ESA/AITSL/CMS/trunk/AITSL/public/sass/parts/_side-blocks.scss",
+		"/Users/valentin/Sites/ESA/AITSL/CMS/trunk/AITSL/public/expert-talk.html",
+		"/Users/valentin/Sites/ESA/AITSL/CMS/trunk/AITSL/public/sass/parts/_exvid.scss",
+		"/Users/valentin/Sites/ESA/AITSL/CMS/trunk/AITSL/public/sass/parts/_youtube.scss",
+		"/Users/valentin/Sites/ESA/AITSL/CMS/trunk/AITSL/App_Master/New-Base.Master",
+		"/Users/valentin/Sites/ESA/AITSL/CMS/trunk/AITSL/public/sass/vendor/bootstrap-sass/bootstrap/_tables.scss",
+		"/Users/valentin/Sites/ESA/AITSL/CMS/trunk/AITSL/public/config.rb",
+		"/Users/valentin/Sites/ESA/AITSL/CMS/trunk/AITSL/public/sass/parts/_quick-links.scss",
+		"/Users/valentin/Sites/ESA/AITSL/CMS/trunk/AITSL/public/sass/parts/_footer.scss",
+		"/Users/valentin/Sites/ESA/AITSL/CMS/trunk/AITSL/public/sass/parts/_tools.scss",
+		"/Users/valentin/Sites/ESA/AITSL/CMS/trunk/AITSL/public/sass/parts/_article.scss",
+		"/Users/valentin/Sites/ESA/AITSL/CMS/trunk/AITSL/public/sass/parts/_layout.scss",
+		"/Users/valentin/Sites/ESA/AITSL/CMS/trunk/AITSL/public/sass/parts/_deep-links-carousel.scss",
+		"/Users/valentin/Sites/ESA/AITSL/CMS/trunk/AITSL/public/sass/parts/_fonts.scss",
+		"/Users/valentin/Sites/ESA/AITSL/CMS/trunk/AITSL/public/sass/parts/_site-map.scss",
+		"/Users/valentin/Sites/ESA/AITSL/CMS/trunk/AITSL/public/sass/vendor/bootstrap-sass/bootstrap/_scaffolding.scss",
+		"/Users/valentin/Sites/ESA/AITSL/CMS/trunk/AITSL/public/sass/parts/_ts-content.scss",
+		"/Users/valentin/Sites/ESA/AITSL/CMS/trunk/AITSL/public/sass/vendor/Font-Awesome/_core.scss",
+		"/Users/valentin/Sites/ESA/AITSL/CMS/trunk/AITSL/public/sass/vendor/Font-Awesome/_icons-silent.scss",
+		"/Users/valentin/Sites/ESA/AITSL/CMS/trunk/AITSL/public/sass/vendor/Font-Awesome/font-awesome.scss",
+		"/Users/valentin/Sites/ESA/AITSL/CMS/trunk/AITSL/public/sass/vendor/bootstrap-sass/bootstrap/_button-groups.scss",
+		"/Users/valentin/Sites/ESA/AITSL/CMS/trunk/AITSL/public/sass/vendor/bootstrap-sass/bootstrap/_breadcrumbs.scss",
+		"/Users/valentin/Sites/ESA/AITSL/CMS/trunk/AITSL/public/sass/vendor/bootstrap-sass/bootstrap/_navs.scss",
+		"/Users/valentin/Sites/ESA/AITSL/CMS/trunk/AITSL/public/sass/vendor/bootstrap-sass/bootstrap/_input-groups.scss",
+		"/Users/valentin/Sites/ESA/AITSL/CMS/trunk/AITSL/public/sass/vendor/bootstrap-sass/bootstrap/_forms.scss",
+		"/Users/valentin/Sites/ESA/AITSL/CMS/trunk/AITSL/public/sass/vendor/bootstrap-sass/bootstrap/_alerts.scss",
+		"/Users/valentin/Sites/ESA/AITSL/CMS/trunk/AITSL/public/sass/vendor/bootstrap-sass/bootstrap/_badges.scss",
+		"/Users/valentin/Sites/ESA/AITSL/CMS/trunk/AITSL/public/sass/vendor/bootstrap-sass/bootstrap/_carousel.scss",
+		"/Users/valentin/Sites/ESA/AITSL/CMS/trunk/AITSL/public/sass/vendor/bootstrap-sass/bootstrap/_code.scss",
+		"/Users/valentin/Sites/ESA/AITSL/CMS/trunk/AITSL/public/sass/vendor/bootstrap-sass/bootstrap/_dropdowns.scss",
+		"/Users/valentin/Sites/ESA/AITSL/CMS/trunk/AITSL/public/sass/vendor/bootstrap-sass/bootstrap/_glyphicons.scss",
+		"/Users/valentin/Sites/ESA/AITSL/CMS/trunk/AITSL/public/sass/vendor/bootstrap-sass/bootstrap/_jumbotron.scss",
+		"/Users/valentin/Sites/ESA/AITSL/CMS/trunk/AITSL/public/sass/vendor/bootstrap-sass/bootstrap/_labels.scss",
+		"/Users/valentin/Sites/ESA/AITSL/CMS/trunk/AITSL/public/sass/vendor/bootstrap-sass/bootstrap/_list-group.scss",
+		"/Users/valentin/Sites/ESA/AITSL/CMS/trunk/AITSL/public/sass/vendor/bootstrap-sass/bootstrap/_media.scss",
+		"/Users/valentin/Sites/ESA/AITSL/CMS/trunk/AITSL/public/sass/vendor/bootstrap-sass/bootstrap/_pager.scss",
+		"/Users/valentin/Sites/ESA/AITSL/CMS/trunk/AITSL/public/sass/vendor/bootstrap-sass/bootstrap/_pagination.scss",
+		"/Users/valentin/Sites/ESA/AITSL/CMS/trunk/AITSL/public/sass/vendor/bootstrap-sass/bootstrap/_popovers.scss",
+		"/Users/valentin/Sites/ESA/AITSL/CMS/trunk/AITSL/public/sass/vendor/bootstrap-sass/bootstrap/_print.scss",
+		"/Users/valentin/Sites/ESA/AITSL/CMS/trunk/AITSL/public/sass/vendor/bootstrap-sass/bootstrap/_progress-bars.scss",
+		"/Users/valentin/Sites/ESA/AITSL/CMS/trunk/AITSL/public/sass/vendor/bootstrap-sass/bootstrap/_theme.scss",
+		"/Users/valentin/Sites/ESA/AITSL/CMS/trunk/AITSL/public/sass/vendor/bootstrap-sass/bootstrap/_thumbnails.scss",
+		"/Users/valentin/Sites/ESA/AITSL/CMS/trunk/AITSL/public/sass/vendor/bootstrap-sass/bootstrap/_wells.scss",
+		"/Users/valentin/Sites/ESA/AITSL/CMS/trunk/AITSL/public/css/site.css",
+		"/Users/valentin/Sites/ESA/AITSL/CMS/trunk/AITSL/public/sass/site.scss",
+		"/Users/valentin/Sites/ESA/AITSL/CMS/trunk/AITSL/public/ts-content-career.html",
+		"/Users/valentin/Sites/ESA/AITSL/CMS/trunk/AITSL/public/research.html",
+		"/Users/valentin/Sites/ESA/AITSL/CMS/trunk/AITSL/Mvc/Views/Search/AltSearch.cshtml",
+		"/Users/valentin/Sites/ESA/AITSL/CMS/trunk/AITSL/Mvc/Controllers/EmailAFriendController.cs",
+		"/Users/valentin/Sites/ESA/AITSL/CMS/trunk/AITSL/Mvc/Views/Search/MultimediaSearch.cshtml",
+		"/Users/valentin/Sites/ESA/AITSL/CMS/trunk/AITSL/public/media-3-cols.html",
+		"/Users/valentin/Sites/ESA/AITSL/CMS/trunk/AITSL/Mvc/Views/Search/Default.cshtml",
+		"/Users/valentin/Sites/ESA/AITSL/CMS/trunk/AITSL/App_Master/New-Base-Content.master",
+		"/Users/valentin/Sites/ESA/AITSL/CMS/trunk/AITSL/App_Master/New-Base-Content-3Col.Master",
+		"/Users/valentin/Sites/ESA/AITSL/CMS/trunk/AITSL/public/research-expert-talk.html",
+		"/Users/valentin/Sites/ESA/AITSL/CMS/trunk/AITSL/public/research-item.html",
+		"/Users/valentin/Sites/ESA/AITSL/CMS/trunk/AITSL/Mvc/Views/CHDatafileDetail/CHDatafileDetail.cshtml"
+	],
+	"find":
+	{
+		"height": 35.0
+	},
+	"find_in_files":
+	{
+		"height": 0.0,
+		"where_history":
+		[
+			"/Users/valentin/Sites/plm",
+			"/Users/valentin/Sites/ESA/AITSL/CMS/trunk/AITSL/public/sass/vendor/bootstrap-sass/bootstrap",
+			"/Users/valentin/Sites/ESA/AITSL/CMS/trunk/AITSL/public/sass/parts",
+			"/Users/valentin/Sites/ESA/AITSL/CMS/trunk/AITSL/public/sass/vendor/bootstrap-sass/bootstrap",
+			"/Users/valentin/Sites/ESA/AITSL/CMS/trunk/AITSL/public/sass/vendor/bootstrap-sass",
+			"/Users/valentin/Sites/ESA/AITSL/CMS/trunk/AITSL/public/sass/vendor/bootstrap-sass/bootstrap",
+			"/Users/valentin/Sites/ESA/AITSL/CMS/trunk/AITSL/public/sass/vendor/bootstrap-sass",
+			"/Users/valentin/Sites/ESA/AITSL/CMS/trunk/AITSL/public/sass",
+			"/Users/valentin/Sites/ESA/AITSL/CMS/trunk/AITSL/public/sass/vendor/bootstrap-sass/bootstrap",
+			"/Users/valentin/Sites/ESA/AITSL/CMS/trunk/AITSL/public/sass",
+			"/Users/valentin/Sites/ESA/AITSL/CMS/trunk/AITSL/public/sass/vendor/bootstrap-sass",
+			"/Users/valentin/Sites/ESA/AITSL/CMS/trunk/AITSL/public/sass/vendor/bootstrap-sass/bootstrap",
+			"/Users/valentin/Sites/ESA/AITSL/CMS/trunk/AITSL/public/sass/parts",
+			"/Users/valentin/Sites/ESA/AITSL/CMS/trunk/AITSL/public/sass/vendor/bootstrap-sass/bootstrap",
+			"/Users/valentin/Sites/ESA/AITSL/CMS/trunk/AITSL/public/sass/parts",
+			"/Users/valentin/Sites/ESA/AITSL/CMS/trunk/AITSL/public/sass/vendor/bootstrap-sass/bootstrap",
+			"/Users/valentin/Sites/ESA/AITSL/CMS/trunk/AITSL/public/sass/parts",
+			"/Users/valentin/Sites/ESA/AITSL/CMS/trunk/AITSL/public/sass/vendor/bootstrap-sass/bootstrap",
+			"/Users/valentin/Sites/ESA/AITSL/CMS/trunk/AITSL/public/sass/parts",
+			"/Users/valentin/Sites/ESA/AITSL/CMS/trunk/AITSL/public/sass/vendor/bootstrap-sass/bootstrap",
+			"/Users/valentin/Sites/ESA/AITSL/CMS/trunk/AITSL/public/sass/parts",
+			"/Users/valentin/Sites/ESA/AITSL/CMS/trunk/AITSL/public/sass/vendor/bootstrap-sass/bootstrap",
+			"/Users/valentin/Sites/ESA/AITSL/CMS/trunk/AITSL/public/sass",
+			"/Users/valentin/Sites/ESA/AITSL/CMS/trunk/AITSL/public/sass/vendor",
+			"/Users/valentin/Sites/ESA/AITSL/CMS/trunk/AITSL/public/sass/parts",
+			"/Users/valentin/Sites/ESA/AITSL/CMS/trunk/AITSL/public/sass/vendor/bootstrap-sass/bootstrap",
+			"/Users/valentin/Sites/ESA/AITSL/CMS/trunk/AITSL/public",
+			"/Users/valentin/Sites/ESA/AITSL/CMS/trunk/AITSL/public/sass/parts",
+			"/Users/valentin/Sites/ESA/AITSL/CMS/trunk/AITSL/public/sass/vendor/bootstrap-sass",
+			"/Users/valentin/Sites/ESA/AITSL/CMS/trunk/AITSL/public/sass/parts",
+			"/Users/valentin/Sites/ESA/AITSL/front-end/sass/vendor/bootstrap-sass/bootstrap",
+			"/Users/valentin/Sites/ESA/PlmTool/trunk/SafeSchools/SharedPlm/public/",
+			"/Users/valentin/Sites/ESA/PlmTool/trunk/SafeSchools/SharedPlm/public/coffee",
+			"/Users/valentin/Sites/ESA/PlmTool/trunk/SafeSchools/SharedPlm/public/",
+			"/Users/valentin/Sites/ESA/PlmTool/trunk/SafeSchools/SharedPlm/public/coffee/",
+			"/Users/valentin/Sites/ESA/PlmTool/trunk/SafeSchools/SharedPlm/public/sass/bootstrap",
+			"/Users/valentin/Sites/ESA/Mind Matters/trunk/temp_front_office",
+			"/Users/valentin/Sites/Javascript Unit Test Boilerplate/",
+			"/Users/valentin/Sites/Javascript Unit Test Boilerplate/js/app"
+		]
+	},
+	"find_state":
+	{
+		"case_sensitive": false,
+		"find_history":
+		[
+			"errors.form",
+			"editProfile.",
+			"register.",
+			"name=\"register",
+			"You may have provided",
+			"Authentication failed. You may have provided an invalid username/password combination",
+			"grunt-contrib-watch",
+			"console",
+			"enquire",
+			"exvid-related-videos-slider",
+			"exvid-related-videos",
+			"make-",
+			"list-group-item-variant",
+			"list-group",
+			".content-pagination",
+			"col",
+			"search-input",
+			"sub-search",
+			".conf",
+			".research-form",
+			".fade",
+			".fade.in",
+			"%collapse {\n  display: none;\n}",
+			".collapse {\n  display: none;\n}",
+			"panel-collapse",
+			"standards",
+			"accordion",
+			"panel",
+			"collapse",
+			"%in",
+			"collapsing",
+			"%in",
+			".collapsed",
+			"collapsed",
+			"iop-info",
+			"collapse",
+			"panel-body",
+			".collapse",
+			"%collapse",
+			"list-unstyled",
+			"accordion",
+			"%",
+			"collapse",
+			"\\%([a-zA-Z0-9\\-]+)",
+			"\\%([a-zA-Z0-9\\-])*",
+			"%([a-zA-Z0-9\\-])*",
+			"%([a-zA-Z])+",
+			"exvid-playlist",
+			"exvid-playlist-vid",
+			"exvid-item-subtit",
+			"listPos",
+			"%lt-ie9",
+			"%lt",
+			".lt",
+			".ie",
+			"@extend .",
+			"@extend .fullBwBar",
+			"@extend .",
+			"font%family",
+			".fa",
+			".#",
+			"@extend .list-inline",
+			"@extend .table",
+			".sr-only",
+			"@extend .progress",
+			"@extend .form-control",
+			"@extend .nav",
+			"\\.([_a-z]+[_a-z0-9\\-]*)",
+			"table",
+			"\\.([_a-z]+[_a-z0-9\\-]*)",
+			"\\.([_a-z]+[_a-z0-9-:\\\\]*)",
+			".",
+			".form-inline",
+			".",
+			"extend",
+			".",
+			"input-group",
+			"btn-group",
+			".btn",
+			"@extend .btn",
+			"@extend %btn",
+			"@extend .%btn",
+			"@extend .btn",
+			"@extend .",
+			"@extend .btn-group",
+			"@extend .btn",
+			"@extend",
+			"exvid-btn-grid-view",
+			"content-cms-landing",
+			"exvid-list-type",
+			"title",
+			"conf-list",
+			"txt",
+			"minus",
+			"content-side-right",
+			"remove",
+			"research-remove-pattern",
+			"research-detail-",
+			"desc",
+			"expand",
+			"exp",
+			"expand",
+			"font-family:",
+			"research-filter-toggle",
+			"side-block",
+			"badge",
+			"research-badge",
+			"exvid-related-videos",
+			"below",
+			"publication",
+			"wcagYoutubePlayer",
+			"initSinglePlayers",
+			"new",
+			"playlist",
+			";",
+			";\n",
+			"\"\"\n",
+			"gradient",
+			"paginat",
+			"research-results",
+			"hide",
+			"research-patterns",
+			"research-remove-pattern",
+			"research-patterns",
+			"modalVideoSrc",
+			"_.tem",
+			"<span class=\"research-filter-type\">",
+			"inline-form"
+		],
+		"highlight": true,
+		"in_selection": false,
+		"preserve_case": false,
+		"regex": false,
+		"replace_history":
+		[
+			"error.invalid",
+			"",
+			"editProfile.",
+			"name=\"editProfile",
+			".",
+			".$1",
+			".lt-ie9",
+			"@extend %fullBwBar",
+			"font-family",
+			"%fa",
+			"%#",
+			"@extend %list-inline",
+			"@extend %table",
+			"@extend %progress",
+			"@extend %form-control",
+			"@extend %nav",
+			"%$1",
+			"%",
+			"%form-inline",
+			"%",
+			"%btn",
+			"@extend %btn",
+			"@extend .btn",
+			"@extend %btn",
+			" !important;",
+			"<span class=\"research-filter-toggle\">",
+			"\n			<!-- [DESKTOP NAV] -->\n			<nav id=\"desktop-main-nav\">\n				<ul class=\"left-nav\">\n					<li class=\"item-teachers\">\n						<a href=\"#\">Teachers</a>\n						<!-- [DEEP ITEMS] -->\n						<div class=\"desktop-main-nav-sub\">\n							<ul>\n								<!-- [DEEP ITEMS - COL 1] -->\n								<li>\n									<ul>\n										<li><a href=\"#\">Teachers Home</a></li>\n									</ul>\n								</li>\n								<!-- [/DEEP ITEMS - COL 1] -->\n\n								<!-- [DEEP ITEMS - COL 2] -->\n								<li>\n									<strong>Initiatives</strong>\n									<ul>\n										<li><a href=\"#\">Australian Professional</a></li>\n										<li><a href=\"#\">Standards for Teachers</a></li>\n										<li><a href=\"#\">Performance and Development</a></li>\n										<li><a href=\"#\">Professional Learning</a></li>\n										<li><a href=\"#\">Initial Teacher Education</a></li>\n										<li><a href=\"#\">Registration</a></li>\n										<li><a href=\"#\">Certification</a></li>\n										<li><a href=\"#\">Assessment for Migration</a></li>\n									</ul>\n								</li>\n								<!-- [/DEEP ITEMS - COL 2] -->\n								\n								<!-- [DEEP ITEMS - COL 3] -->\n								<li>\n									<strong>Resources</strong>\n									<ul>\n										<li><a href=\"#\">Great Teaching Ideas</a></li>\n										<li><a href=\"#\">Student Voice</a></li>\n										<li><a href=\"#\">Teacher Feature</a></li>\n										<li><a href=\"#\">AITSL Research Database</a></li>\n										<li><a href=\"#\">Leading Curriculum Change</a></li>\n										<li><a href=\"#\">Supervising Pre-service</a></li>\n										<li><a href=\"#\">Teachers</a></li>\n										<li><a href=\"#\">Learning Frontiers</a></li>\n									</ul>\n								</li>\n								<!-- [/DEEP ITEMS - COL 3] -->\n\n								<!-- [DEEP ITEMS - COL 4] -->\n								<li>\n									<strong>Tools</strong>\n									<ul>\n										<li><a href=\"#\">Accredited Programs List</a></li>\n										<li><a href=\"#\">Illustrations of Practice</a></li>\n										<li><a href=\"#\">Self Assessment Tool</a></li>\n										<li><a href=\"#\">Certification Evidence</a></li>\n									</ul>\n								</li>\n								<!-- [/DEEP ITEMS - COL 4] -->\n							</ul>\n\n							<!-- [DEEP ITEMS - OVERVIEW CONTENT] -->\n							<span class=\"desktop-main-nav-sub-overwiew\">A brief overview of the content contained in this section will go here.</span>\n							<!-- [/DEEP ITEMS - OVERVIEW CONTENT] -->\n\n							<!-- [DEEP ITEMS - CLOSE BUTTON] -->\n							<button type=\"button\" class=\"desktop-main-nav-close\" title=\"Close the sub navigation.\">close</button>\n							<!-- [/DEEP ITEMS - CLOSE BUTTON] -->\n						</div>\n						<!-- [DEEP ITEMS] -->\n					</li>\n					<li class=\"item-school-leaders\">\n						<a href=\"#\">School Leaders</a>\n						<!-- [DEEP ITEMS] -->\n						<div class=\"desktop-main-nav-sub\">\n							<ul>\n								<!-- [DEEP ITEMS - COL 1] -->\n								<li>\n									<ul>\n										<li><a href=\"#\">Teachers Home</a></li>\n									</ul>\n								</li>\n								<!-- [/DEEP ITEMS - COL 1] -->\n\n								<!-- [DEEP ITEMS - COL 2] -->\n								<li>\n									<strong>Initiatives</strong>\n									<ul>\n										<li><a href=\"#\">Australian Professional</a></li>\n										<li><a href=\"#\">Standards for Teachers</a></li>\n										<li><a href=\"#\">Performance and Development</a></li>\n										<li><a href=\"#\">Professional Learning</a></li>\n										<li><a href=\"#\">Initial Teacher Education</a></li>\n										<li><a href=\"#\">Registration</a></li>\n										<li><a href=\"#\">Certification</a></li>\n										<li><a href=\"#\">Assessment for Migration</a></li>\n									</ul>\n								</li>\n								<!-- [/DEEP ITEMS - COL 2] -->\n								\n								<!-- [DEEP ITEMS - COL 3] -->\n								<li>\n									<strong>Resources</strong>\n									<ul>\n										<li><a href=\"#\">Great Teaching Ideas</a></li>\n										<li><a href=\"#\">Student Voice</a></li>\n										<li><a href=\"#\">Teacher Feature</a></li>\n										<li><a href=\"#\">AITSL Research Database</a></li>\n										<li><a href=\"#\">Leading Curriculum Change</a></li>\n										<li><a href=\"#\">Supervising Pre-service</a></li>\n										<li><a href=\"#\">Teachers</a></li>\n										<li><a href=\"#\">Learning Frontiers</a></li>\n									</ul>\n								</li>\n								<!-- [/DEEP ITEMS - COL 3] -->\n\n								<!-- [DEEP ITEMS - COL 4] -->\n								<li>\n									<strong>Tools</strong>\n									<ul>\n										<li><a href=\"#\">Accredited Programs List</a></li>\n										<li><a href=\"#\">Illustrations of Practice</a></li>\n										<li><a href=\"#\">Self Assessment Tool</a></li>\n										<li><a href=\"#\">Certification Evidence</a></li>\n									</ul>\n								</li>\n								<!-- [/DEEP ITEMS - COL 4] -->\n							</ul>\n\n							<!-- [DEEP ITEMS - OVERVIEW CONTENT] -->\n							<span class=\"desktop-main-nav-sub-overwiew\">A brief overview of the content contained in this section will go here.</span>\n							<!-- [/DEEP ITEMS - OVERVIEW CONTENT] -->\n\n							<!-- [DEEP ITEMS - CLOSE BUTTON] -->\n							<button type=\"button\" class=\"desktop-main-nav-close\" title=\"Close the sub navigation.\">close</button>\n							<!-- [/DEEP ITEMS - CLOSE BUTTON] -->\n						</div>\n						<!-- [DEEP ITEMS] -->\n					</li>\n				</ul>\n\n				<ul class=\"right-nav\">\n					<li class=\"item-school-initiatives\">\n						<a href=\"#\">Initiatives</a>\n						<!-- [DEEP ITEMS] -->\n						<div class=\"desktop-main-nav-sub\">\n							<ul>\n								<!-- [DEEP ITEMS - COL 1] -->\n								<li>\n									<ul>\n										<li><a href=\"#\">Teachers Home</a></li>\n									</ul>\n								</li>\n								<!-- [/DEEP ITEMS - COL 1] -->\n\n								<!-- [DEEP ITEMS - COL 2] -->\n								<li>\n									<strong>Initiatives</strong>\n									<ul>\n										<li><a href=\"#\">Australian Professional</a></li>\n										<li><a href=\"#\">Standards for Teachers</a></li>\n										<li><a href=\"#\">Performance and Development</a></li>\n										<li><a href=\"#\">Professional Learning</a></li>\n										<li><a href=\"#\">Initial Teacher Education</a></li>\n										<li><a href=\"#\">Registration</a></li>\n										<li><a href=\"#\">Certification</a></li>\n										<li><a href=\"#\">Assessment for Migration</a></li>\n									</ul>\n								</li>\n								<!-- [/DEEP ITEMS - COL 2] -->\n								\n								<!-- [DEEP ITEMS - COL 3] -->\n								<li>\n									<strong>Resources</strong>\n									<ul>\n										<li><a href=\"#\">Great Teaching Ideas</a></li>\n										<li><a href=\"#\">Student Voice</a></li>\n										<li><a href=\"#\">Teacher Feature</a></li>\n										<li><a href=\"#\">AITSL Research Database</a></li>\n										<li><a href=\"#\">Leading Curriculum Change</a></li>\n										<li><a href=\"#\">Supervising Pre-service</a></li>\n										<li><a href=\"#\">Teachers</a></li>\n										<li><a href=\"#\">Learning Frontiers</a></li>\n									</ul>\n								</li>\n								<!-- [/DEEP ITEMS - COL 3] -->\n\n								<!-- [DEEP ITEMS - COL 4] -->\n								<li>\n									<strong>Tools</strong>\n									<ul>\n										<li><a href=\"#\">Accredited Programs List</a></li>\n										<li><a href=\"#\">Illustrations of Practice</a></li>\n										<li><a href=\"#\">Self Assessment Tool</a></li>\n										<li><a href=\"#\">Certification Evidence</a></li>\n									</ul>\n								</li>\n								<!-- [/DEEP ITEMS - COL 4] -->\n							</ul>\n\n							<!-- [DEEP ITEMS - OVERVIEW CONTENT] -->\n							<span class=\"desktop-main-nav-sub-overwiew\">A brief overview of the content contained in this section will go here.</span>\n							<!-- [/DEEP ITEMS - OVERVIEW CONTENT] -->\n\n							<!-- [DEEP ITEMS - CLOSE BUTTON] -->\n							<button type=\"button\" class=\"desktop-main-nav-close\" title=\"Close the sub navigation.\">close</button>\n							<!-- [/DEEP ITEMS - CLOSE BUTTON] -->\n						</div>\n						<!-- [DEEP ITEMS] -->\n					</li>\n					<li class=\"item-school-resources\">\n						<a href=\"#\">Resources &amp; Tools</a>\n						<!-- [DEEP ITEMS] -->\n						<div class=\"desktop-main-nav-sub\">\n							<ul>\n								<!-- [DEEP ITEMS - COL 1] -->\n								<li>\n									<ul>\n										<li><a href=\"#\">Teachers Home</a></li>\n									</ul>\n								</li>\n								<!-- [/DEEP ITEMS - COL 1] -->\n\n								<!-- [DEEP ITEMS - COL 2] -->\n								<li>\n									<strong>Initiatives</strong>\n									<ul>\n										<li><a href=\"#\">Australian Professional</a></li>\n										<li><a href=\"#\">Standards for Teachers</a></li>\n										<li><a href=\"#\">Performance and Development</a></li>\n										<li><a href=\"#\">Professional Learning</a></li>\n										<li><a href=\"#\">Initial Teacher Education</a></li>\n										<li><a href=\"#\">Registration</a></li>\n										<li><a href=\"#\">Certification</a></li>\n										<li><a href=\"#\">Assessment for Migration</a></li>\n									</ul>\n								</li>\n								<!-- [/DEEP ITEMS - COL 2] -->\n								\n								<!-- [DEEP ITEMS - COL 3] -->\n								<li>\n									<strong>Resources</strong>\n									<ul>\n										<li><a href=\"#\">Great Teaching Ideas</a></li>\n										<li><a href=\"#\">Student Voice</a></li>\n										<li><a href=\"#\">Teacher Feature</a></li>\n										<li><a href=\"#\">AITSL Research Database</a></li>\n										<li><a href=\"#\">Leading Curriculum Change</a></li>\n										<li><a href=\"#\">Supervising Pre-service</a></li>\n										<li><a href=\"#\">Teachers</a></li>\n										<li><a href=\"#\">Learning Frontiers</a></li>\n									</ul>\n								</li>\n								<!-- [/DEEP ITEMS - COL 3] -->\n\n								<!-- [DEEP ITEMS - COL 4] -->\n								<li>\n									<strong>Tools</strong>\n									<ul>\n										<li><a href=\"#\">Accredited Programs List</a></li>\n										<li><a href=\"#\">Illustrations of Practice</a></li>\n										<li><a href=\"#\">Self Assessment Tool</a></li>\n										<li><a href=\"#\">Certification Evidence</a></li>\n									</ul>\n								</li>\n								<!-- [/DEEP ITEMS - COL 4] -->\n							</ul>\n\n							<!-- [DEEP ITEMS - OVERVIEW CONTENT] -->\n							<span class=\"desktop-main-nav-sub-overwiew\">A brief overview of the content contained in this section will go here.</span>\n							<!-- [/DEEP ITEMS - OVERVIEW CONTENT] -->\n\n							<!-- [DEEP ITEMS - CLOSE BUTTON] -->\n							<button type=\"button\" class=\"desktop-main-nav-close\" title=\"Close the sub navigation.\">close</button>\n							<!-- [/DEEP ITEMS - CLOSE BUTTON] -->\n						</div>\n						<!-- [DEEP ITEMS] -->\n					</li>\n					<li class=\"item-school-media\">\n						<a href=\"#\">Media &amp; Newsroom</a>\n						<!-- [DEEP ITEMS] -->\n						<div class=\"desktop-main-nav-sub\">\n							<ul>\n								<!-- [DEEP ITEMS - COL 1] -->\n								<li>\n									<ul>\n										<li><a href=\"#\">Teachers Home</a></li>\n									</ul>\n								</li>\n								<!-- [/DEEP ITEMS - COL 1] -->\n\n								<!-- [DEEP ITEMS - COL 2] -->\n								<li>\n									<strong>Initiatives</strong>\n									<ul>\n										<li><a href=\"#\">Australian Professional</a></li>\n										<li><a href=\"#\">Standards for Teachers</a></li>\n										<li><a href=\"#\">Performance and Development</a></li>\n										<li><a href=\"#\">Professional Learning</a></li>\n										<li><a href=\"#\">Initial Teacher Education</a></li>\n										<li><a href=\"#\">Registration</a></li>\n										<li><a href=\"#\">Certification</a></li>\n										<li><a href=\"#\">Assessment for Migration</a></li>\n									</ul>\n								</li>\n								<!-- [/DEEP ITEMS - COL 2] -->\n								\n								<!-- [DEEP ITEMS - COL 3] -->\n								<li>\n									<strong>Resources</strong>\n									<ul>\n										<li><a href=\"#\">Great Teaching Ideas</a></li>\n										<li><a href=\"#\">Student Voice</a></li>\n										<li><a href=\"#\">Teacher Feature</a></li>\n										<li><a href=\"#\">AITSL Research Database</a></li>\n										<li><a href=\"#\">Leading Curriculum Change</a></li>\n										<li><a href=\"#\">Supervising Pre-service</a></li>\n										<li><a href=\"#\">Teachers</a></li>\n										<li><a href=\"#\">Learning Frontiers</a></li>\n									</ul>\n								</li>\n								<!-- [/DEEP ITEMS - COL 3] -->\n\n								<!-- [DEEP ITEMS - COL 4] -->\n								<li>\n									<strong>Tools</strong>\n									<ul>\n										<li><a href=\"#\">Accredited Programs List</a></li>\n										<li><a href=\"#\">Illustrations of Practice</a></li>\n										<li><a href=\"#\">Self Assessment Tool</a></li>\n										<li><a href=\"#\">Certification Evidence</a></li>\n									</ul>\n								</li>\n								<!-- [/DEEP ITEMS - COL 4] -->\n							</ul>\n\n							<!-- [DEEP ITEMS - OVERVIEW CONTENT] -->\n							<span class=\"desktop-main-nav-sub-overwiew\">A brief overview of the content contained in this section will go here.</span>\n							<!-- [/DEEP ITEMS - OVERVIEW CONTENT] -->\n\n							<!-- [DEEP ITEMS - CLOSE BUTTON] -->\n							<button type=\"button\" class=\"desktop-main-nav-close\" title=\"Close the sub navigation.\">close</button>\n							<!-- [/DEEP ITEMS - CLOSE BUTTON] -->\n						</div>\n						<!-- [DEEP ITEMS] -->\n					</li>\n				</ul>\n			</nav>\n			<!-- [/DESKTOP NAV] -->",
+			"font-size:1.3em;",
+			"font-size: 1.3em;",
+			"font-size: 2.6em;",
+			"font-size: 2.6em",
+			"font-size: 1.9em;",
+			"}}",
+			"{{",
+			"$nav",
+			"$items",
+			"$slider",
+			"$carousel",
+			"class=\"carousel",
+			"",
+			"home-",
+			"@include clearfix();",
+			"@include responsive",
+			": $",
+			"media/img/",
+			"woman",
+			"make-xs",
+			"  ",
+			".stage",
+			"http://ssh.audittool.stage.esa.edu.au",
+			"",
+			"jqueryUi",
+			"videoJsCdn",
+			"jquerySetOffset",
+			"jqueryDetails",
+			"",
+			"\":",
+			"navigate",
+			"  ",
+			"entries",
+			"",
+			"pc12340:57206",
+			"\n        {\n        	\"viewed\": false,",
+			"  ",
+			"\"required\"",
+			"action=\"temp/json/data-plan-response.json\" data-json=\"\"",
+			"temp/json/data-plan-response.json",
+			"<table class=\"table table-striped\"",
+			"<table class=\"table\"",
+			"Introduction : rate",
+			"	",
+			"\"0\").attr(\"fill\"",
+			"Student learning",
+			"School processes",
+			"Student learning",
+			"outline-color",
+			"    ",
+			"      ",
+			"    ",
+			"",
+			"    ",
+			"glyphicon glyphicon-edit",
+			" <i class=\".glyphicon .glyphicon-edit\"></i></span>",
+			"<span class=\"editable-value\" title=\"Click to edit this field\" tabindex=\"0\">",
+			"<dd class=\"editable\">",
+			"<button type=\"button\" class=\"btn editable-cancel\">Cancel</button>",
+			"",
+			"Article",
+			"<link href='http://fonts.googleapis.com/css?family=Open+Sans:400italic,400,700' rel='stylesheet' type='text/css'>",
+			"<strong>Recent notes</strong>",
+			"<button type=\"submit\" class=\"btn btn-primary\"><i class=\"icon-white icon-ok\"></i></button>",
+			"    ",
+			"<li><a href=\"accessibility.html\">Accessibility</a></li>",
+			"<li class=\"notes-form-recent-empty\">No recent note...</li>",
+			"								<li class=\"notes-form-recent-empty\"><strong>No recent note...</strong></li>",
+			"<!--								<li>\n									<strong>Name / Section</strong>\n\n									<p>Vestibulum non vestibulum risus, vitae suscipit lorem. Proin in rhoncus lectus, eu accumsan tellus. Suspendisse eu varius ligula, non congue enim. Integer laoreet lectus rhoncus tortor vestibulum porta. Vestibulum venenatis ornare iaculis.</p>\n								</li>\n								<li>\n									<strong>Name / Section</strong>\n\n									<p>Vestibulum non vestibulum risus, vitae suscipit lorem. Proin in rhoncus lectus, eu accumsan tellus. Suspendisse eu varius ligula, non congue enim. Integer laoreet lectus rhoncus tortor vestibulum porta. Vestibulum venenatis ornare iaculis.</p>\n								</li>\n								<li>\n									<strong>Name / Section</strong>\n\n									<p>Vestibulum non vestibulum risus, vitae suscipit lorem. Proin in rhoncus lectus, eu accumsan tellus. Suspendisse eu varius ligula, non congue enim. Integer laoreet lectus rhoncus tortor vestibulum porta. Vestibulum venenatis ornare iaculis.</p>\n								</li>-->",
+			"<form",
+			"<form  ",
+			"    ",
+			"Record responses in your journal",
+			"q$1",
+			"#diagram-area-$1,\n	.area$1",
+			"#diagram-area-$1\n	.area$1",
+			"@text[\"$1\"].node.id = \"text-counter-$2\"",
+			"@areas[\"$1\"].node.id = \"diagram-area-$2\"",
+			"39",
+			"38",
+			"37",
+			"36",
+			"35",
+			"28",
+			"25",
+			"24",
+			"23",
+			"22",
+			"21",
+			"20",
+			"19",
+			"<strong>Hello, <a href=\"#\" title=\"Click to edit your profile.\">michelle.edmunds@esa.edu.au</a></strong>",
+			"<strong>Hello, <a href=\"#\" title=\"Click to edit your profile.\">michelle.edmunds@esa.edu.au</a></strong>  |  <a href=\"index.html\">Logout</a> | <a href=\"#\">Help</a>",
+			"green",
+			"<a href=\"#\" class=\"site-title pull-left\"><img src=\"Content/img/main-logo.png\" alt=\"Mind Matters\"></a>\n\n				<a href=\"#\" class=\"site-sub-title pull-right\">Work<span class=\"uppercase\">ON</span> data plan</a>",
+			"Line 7:",
+			"Line 6:",
+			"Line 5:",
+			"Line 4:",
+			"Line 3:",
+			"Line 2:"
+		],
+		"reverse": false,
+		"show_context": true,
+		"use_buffer2": true,
+		"whole_word": false,
+		"wrap": true
+	},
+	"groups":
+	[
+		{
+			"sheets":
+			[
+			]
+		}
+	],
+	"incremental_find":
+	{
+		"height": 0.0
+	},
+	"input":
+	{
+		"height": 30.0
+	},
+	"layout":
+	{
+		"cells":
+		[
+			[
+				0,
+				0,
+				1,
+				1
+			]
+		],
+		"cols":
+		[
+			0.0,
+			1.0
+		],
+		"rows":
+		[
+			0.0,
+			1.0
+		]
+	},
+	"menu_visible": true,
+	"output.CoffeeLintPanel":
+	{
+		"height": 94.0
+	},
+	"output.exec":
+	{
+		"height": 24.0
+	},
+	"replace":
+	{
+		"height": 64.0
+	},
+	"save_all_on_build": true,
+	"select_file":
+	{
+		"height": 0.0,
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"select_project":
+	{
+		"height": 500.0,
+		"selected_items":
+		[
+			[
+				"",
+				"/Users/valentin/Sites/Javascript Unit Test Boilerplate/untitled.sublime-project"
+			]
+		],
+		"width": 380.0
+	},
+	"show_minimap": true,
+	"show_open_files": false,
+	"show_tabs": true,
+	"side_bar_visible": true,
+	"side_bar_width": 310.0,
+	"status_bar_visible": true
+}
