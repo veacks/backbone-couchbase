@@ -11,16 +11,93 @@
 
   _ = require("underscore");
 
-  module.exports = function(bucket, sep) {
-    var _keyFormat;
-    if (sep == null) {
-      sep = "::";
+
+  /*
+   * Create a Couchbase Sync Method for Backbone Models and Collections
+   * @param {object} [options={}] - Options for the creation of the sync method
+   * @option {object} bucket - Bucket object for the synchronisation
+   * @option {object} connection - Cluster address, bucket name and password
+   * @option {string} [sep="::"] - Replace "/" by separator, if false the url wont be formated
+   * @option {boolean} [httpError=false] - Format couchbase error to http friendly status
+   * @return {function} Backbone Couchbase Sync function
+   */
+
+  module.exports = function(options) {
+    var bucket, cluster, httpError, idGen, sep, _couchbaseErrorFormat, _keyFormat;
+    if (options == null) {
+      options = {};
     }
+    if (!((options.bucket != null) || (options.connection != null))) {
+      throw new Error("Bucket or Connection object is required to generate sync method");
+    }
+    if (options.bucket != null) {
+      bucket = options.bucket;
+    } else if (options.connection != null) {
+      if (!((options.connection.cluster != null) && (options.connection.bucket != null))) {
+        throw new Error("Connection bucket and cluster are required");
+      }
+      cluster = new couchbase.Cluster(options.connection.cluster);
+      if (options.connection.password != null) {
+        bucket = cluster.openBucket(options.connection.bucket, options.connection.password);
+      } else {
+        bucket = cluster.openBucket(options.connection.bucket);
+      }
+    }
+    httpError = options.httpError || true;
+    sep = options.sep || "::";
+    idGen = options.idGen || uuid;
+
+    /*
+     * Format the document key
+     * @private
+     */
     _keyFormat = function(url) {
+      if (!sep) {
+        return url;
+      }
       url = decodeURIComponent(url);
       url = url.replace(/^(\/)/, '');
       return url = url.replace(/\//g, sep);
     };
+
+    /*
+     * Format couchbase error to http friendly
+     * @private
+     */
+    _couchbaseErrorFormat = function(error) {
+      if (!httpError) {
+        return error;
+      }
+      switch (error.toString()) {
+        case "Error: key does not exist":
+          return {
+            status: 404,
+            message: error
+          };
+        case "Error: key already exists":
+          return {
+            status: 409,
+            message: error
+          };
+        default:
+          return {
+            status: 500,
+            message: error
+          };
+      }
+    };
+
+    /*
+     * Generate the Backbone Sync Method
+     * @param {string} method - CRUD command
+     * @param {object} model - Backbone Model or Collection object
+     * @param {object} options - Sync options
+     * @option {callback~Error} error - Callback error
+     * @option {callback~Success} success - Callback success 
+     * @option {boolean} trace - Trace Couchbase process
+     * @option {boolean} create - Force creation with a specific key 
+     * @return promise
+     */
     return function(method, model, options) {
       var couchbase_callback, def, query;
       def = Q.defer();
@@ -37,14 +114,14 @@
         }
         if (err != null) {
           if ((options != null) && (options.error != null)) {
-            options.error(err);
+            options.error(_couchbaseErrorFormat(err));
           }
-          def.reject(err);
+          def.reject(_couchbaseErrorFormat(err));
           if (options.trace) {
             console.log("  - err:");
             console.log(err);
           }
-          return;
+          return false;
         }
         if (_.isArray(result)) {
           response = [];
@@ -119,7 +196,7 @@
           message: "" + method + ": Wrong or empty method for Backbone-Couchbase-Sync"
         });
       }
-      model.trigger('request', model, null, options);
+      model.trigger('request', model, def.promise, options);
       return def.promise;
     };
   };
