@@ -1,5 +1,5 @@
 (function() {
-  var Q, ViewQuery, couchbase, uuid, _;
+  var Backbone, Q, ViewQuery, async, couchbase, uuid, _, _originalCollectionFetch;
 
   Q = require("q");
 
@@ -10,6 +10,51 @@
   ViewQuery = couchbase.ViewQuery;
 
   _ = require("underscore");
+
+  async = require("async");
+
+  Backbone = require("backbone");
+
+
+  /*
+   * Set up the join functionally at the Backbone Collection level
+   * @param {object} [options={}] - Options for the fetch method
+   */
+
+  _originalCollectionFetch = Backbone.Collection.prototype.fetch;
+
+  Backbone.Collection.prototype.fetch = function(options) {
+    var success;
+    options = options ? _.clone(options) : {};
+    if ((options.join != null) && options.join === true || typeof options.join === "function") {
+      success = options.success;
+      options.success = (function(_this) {
+        return function(resp) {
+          var tasks;
+          tasks = [];
+          _this.each(function(model) {
+            return tasks.push(function(aCb) {
+              return model.fetch({
+                join: options.join === true && (model.join != null) ? true : typeof options.join === "function" ? options.join : void 0,
+                success: function() {
+                  return aCb();
+                },
+                error: function(model, error) {
+                  return aCb(error);
+                }
+              });
+            });
+          });
+          return async.parallel(tasks, function(error) {
+            if (success != null) {
+              return success.call(options.context, _this, resp, options);
+            }
+          });
+        };
+      })(this);
+    }
+    return _originalCollectionFetch.apply(this, [options]);
+  };
 
 
   /*
@@ -23,10 +68,7 @@
    */
 
   module.exports = function(options) {
-    var bucket, cluster, httpError, idGen, sep, _couchbaseErrorFormat, _keyFormat;
-    if (options == null) {
-      options = {};
-    }
+    var bucket, cluster, httpError, idGen, sep, _couchbaseErrorFormat, _keyFormat, _keysFormat;
     if (!((options.bucket != null) || (options.connection != null))) {
       throw new Error("Bucket or Connection object is required to generate sync method");
     }
@@ -48,13 +90,24 @@
     idGen = options.idGen || uuid;
 
     /*
+     * Format the document keys
+     * @private
+     */
+    _keysFormat = function(url, ids) {
+      var id, uList, _i, _len;
+      uList = [];
+      for (_i = 0, _len = ids.length; _i < _len; _i++) {
+        id = ids[_i];
+        uList.push(_keyFormat(url + "/" + id));
+      }
+      return uList;
+    };
+
+    /*
      * Format the document key
      * @private
      */
     _keyFormat = function(url) {
-      if (!sep) {
-        return url;
-      }
       url = decodeURIComponent(url);
       url = url.replace(/^(\/)/, '');
       return url = url.replace(/\//g, sep);
@@ -64,25 +117,25 @@
      * Format couchbase error to http friendly
      * @private
      */
-    _couchbaseErrorFormat = function(error) {
+    _couchbaseErrorFormat = function(error, result) {
       if (!httpError) {
         return error;
       }
-      switch (error.toString()) {
-        case "Error: key does not exist":
+      switch (error.code) {
+        case 13:
           return {
             status: 404,
-            message: error
+            message: error.toString()
           };
-        case "Error: key already exists":
+        case 12:
           return {
             status: 409,
-            message: error
+            message: error.toString()
           };
         default:
           return {
             status: 500,
-            message: error
+            message: result || error
           };
       }
     };
@@ -99,49 +152,115 @@
      * @return promise
      */
     return function(method, model, options) {
-      var couchbase_callback, def, query;
+      var couchbase_callback, def, query, _error, _success;
       def = Q.defer();
+
+      /*
+       * Send the success response
+       * @private
+       */
+      _success = function(response) {
+        if (options.success != null) {
+          options.success(response);
+        }
+        return def.resolve(response);
+      };
+
+      /*
+       * Send the error response
+       * @private
+       */
+      _error = function(err) {
+        if ((options != null) && (options.error != null)) {
+          options.error(_couchbaseErrorFormat(err));
+        }
+        return def.reject(_couchbaseErrorFormat(err));
+      };
+
+      /*
+       * Callback to get the updated datas
+       * @private
+       */
       couchbase_callback = function(err, result) {
-        var response, _i, _len;
+        var id, item, response, _i, _len;
         if (options.trace) {
-          console.log("-----");
-          console.log("Backbone Couchbase:");
           console.log("  - method:");
           console.log(method);
           console.log("  - id:");
-          console.log(_keyFormat(model.url()));
-          console.log(options);
-        }
-        if (err != null) {
-          if ((options != null) && (options.error != null)) {
-            options.error(_couchbaseErrorFormat(err));
+          switch (typeof model.url) {
+            case "function":
+              console.log(_keyFormat(model.url()));
+              break;
+            case "string":
+              console.log(model.url);
           }
-          def.reject(_couchbaseErrorFormat(err));
+          console.log(options);
+          console.log("  - result:");
+          console.log(result);
+        }
+        if ((err != null) && (err !== 0 || (err.length != null) && err.length > 0)) {
+          if (options.ids == null) {
+            _error(err);
+          } else {
+            _error(err, result);
+          }
           if (options.trace) {
             console.log("  - err:");
             console.log(err);
           }
-          return false;
+          return;
         }
         if (_.isArray(result)) {
+          if ((options != null) && options.reduce) {
+            response = result[0] != null ? result[0].value : 0;
+          } else {
+            response = [];
+            for (_i = 0, _len = result.length; _i < _len; _i++) {
+              item = result[_i];
+              response.push(item.value);
+            }
+          }
+        } else if (options.ids != null) {
           response = [];
-          for (_i = 0, _len = result.length; _i < _len; _i++) {
-            model = result[_i];
-            response.push(model.value);
+          for (id in result) {
+            item = result[id];
+            response.push(item.value);
           }
         } else {
           response = result.value;
         }
-        if ((options != null) && (options.success != null)) {
-          options.success(response);
+        if (options.join === true && (model.join != null)) {
+          model.join(response, function(err, joinedDatas) {
+            if (err != null) {
+              return _error(err);
+            } else {
+              return _success(joinedDatas);
+            }
+          });
+          return;
+        } else if (typeof options.join === "function") {
+          options.join(model, response, function(err, joinedDatas) {
+            if (err != null) {
+              return _error(err);
+            } else {
+              return _success(joinedDatas);
+            }
+          });
+          return;
         }
-        def.resolve(response);
+        _success(response);
         if (options.trace) {
           console.log("  - response:");
           console.log(response);
           return console.log("-----");
         }
       };
+      if (options.trace) {
+        console.log("-----");
+        console.log("Backbone Couchbase:");
+        console.log(" - method:");
+        console.log(method);
+      }
       if (method === "create" || ((options.create != null) && options.create)) {
         if (model.isNew()) {
           model.set(model.idAttribute, uuid.v4());
@@ -163,11 +282,26 @@
         });
       } else if (method === "read") {
         if (model.models != null) {
-          query = ViewQuery.from(model.url, options.viewName || model.defaultView);
-          if (options.custom != null) {
-            query.custom(options.custom);
+          if (options.ids != null) {
+            if (typeof options.ids === "string") {
+              options.ids = [options.ids];
+            }
+            if (!_.isArray(options.ids)) {
+              _error(new Error("options.ids must be a String or an Array!"));
+            } else {
+              bucket.getMulti(_keysFormat(model.url, options.ids), couchbase_callback);
+            }
+          } else {
+            query = ViewQuery.from(model.designDocument || model.url, options.viewName || model.defaultView);
+            if (options.custom != null) {
+              query.custom(options.custom);
+            }
+            query.reduce(options.reduce || false);
+            if (options.stale != null) {
+              query.stale(options.stale);
+            }
+            bucket.query(query, couchbase_callback);
           }
-          bucket.query(query, couchbase_callback);
         } else {
           bucket.get(_keyFormat(model.url()), couchbase_callback);
         }

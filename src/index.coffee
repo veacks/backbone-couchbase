@@ -3,6 +3,38 @@ uuid = require "node-uuid"
 couchbase = require "couchbase"
 ViewQuery = couchbase.ViewQuery
 _ = require "underscore"
+async = require "async"
+Backbone = require "backbone"
+
+###
+# Set up the join functionally at the Backbone Collection level
+# @param {object} [options={}] - Options for the fetch method
+###
+_originalCollectionFetch = Backbone.Collection::fetch
+Backbone.Collection::fetch = (options) ->
+  options = if options then _.clone(options) else {}
+
+  # Check if join is required
+  if options.join? and options.join is true or typeof options.join is "function"
+    # Save the success method
+    success = options.success
+    # Overload success callback to perform join on each join
+    options.success = (resp) =>
+      tasks = []
+      @each (model) ->
+        tasks.push (aCb) ->
+          model.fetch
+            join: if options.join is true and model.join? then true else if typeof options.join is "function" then options.join
+            success: ->
+              aCb()
+            error: (model, error) ->
+              aCb error
+
+      async.parallel tasks, (error) =>
+        if success?
+          success.call options.context, @, resp, options
+
+  _originalCollectionFetch.apply @, [options]
 
 ###
 # Create a Couchbase Sync Method for Backbone Models and Collections
@@ -13,7 +45,7 @@ _ = require "underscore"
 # @option {boolean} [httpError=false] - Format couchbase error to http friendly status
 # @return {function} Backbone Couchbase Sync function
 ###
-module.exports = (options = {}) ->
+module.exports = (options) ->
   # Check if bucket or connections are present
   unless options.bucket? or options.connection?
     throw new Error "Bucket or Connection object is required to generate sync method"
@@ -40,15 +72,22 @@ module.exports = (options = {}) ->
   sep = options.sep || "::"
   # Id generator
   idGen = options.idGen || uuid
-  
+
+  ###
+  # Format the document keys
+  # @private
+  ###
+  _keysFormat = (url, ids) ->
+    uList = []
+    uList.push _keyFormat url+"/"+id for id in ids
+    #console.log uList
+    uList
+
   ###
   # Format the document key
   # @private
   ###
   _keyFormat = (url) ->
-    # If sep is false, dont format the url
-    unless sep
-      return url
     url = decodeURIComponent url
     url = url.replace /^(\/)/, ''
     url = url.replace  /\//g, sep
@@ -57,26 +96,26 @@ module.exports = (options = {}) ->
   # Format couchbase error to http friendly
   # @private
   ###
-  _couchbaseErrorFormat = (error) ->
+  _couchbaseErrorFormat = (error, result) ->
     # if error is false, dont format error
     unless httpError
       return error
     
-    switch error.toString()
-      when "Error: key does not exist"
+    switch error.code
+      when 13
         return {
           status: 404
-          message: error
+          message: error.toString()
         }
-      when "Error: key already exists"
+      when 12
         return {
           status: 409
-          message: error
+          message: error.toString()
         }
       else
         return {
           status: 500
-          message: error
+          message: result || error
         }
 
   ###
@@ -93,43 +132,96 @@ module.exports = (options = {}) ->
   return (method, model, options) ->
     def = Q.defer()
 
+    ###
+    # Send the success response
+    # @private
+    ###
+    _success = (response) ->
+      if options.success?
+        options.success response
+      def.resolve response
+
+    ###
+    # Send the error response
+    # @private
+    ###
+    _error = (err) ->
+      if options? and options.error?
+        options.error _couchbaseErrorFormat err
+      def.reject _couchbaseErrorFormat err
+
+    ###
+    # Callback to get the updated datas
+    # @private
+    ###
     couchbase_callback = (err, result) ->
       # Trace insertion
       if options.trace
-        console.log "-----"
-        console.log "Backbone Couchbase:"
         console.log "  - method:"
         console.log method
         console.log "  - id:"
-        console.log _keyFormat(model.url())
+        switch typeof model.url
+          when "function" then console.log _keyFormat(model.url())
+          when "string" then console.log model.url
         console.log options
+        console.log "  - result:"
+        console.log result
 
-      if err?
-        if options? and options.error?
-          options.error _couchbaseErrorFormat err
-        def.reject _couchbaseErrorFormat err
+      # If there is an error in the request
+      if err? and (err isnt 0 or err.length? and err.length > 0)
+        unless options.ids?
+          # Send the error
+          _error err
+        else
+          _error err, result
         if options.trace
           console.log "  - err:"
           console.log err
-        return false
+        return
 
       # If collection result
       if _.isArray result
+        if options? and options.reduce
+          response = if result[0]? then result[0].value else 0
+        else
+          response = []
+          response.push item.value for item in result
+      else if options.ids?
         response = []
-        response.push model.value for model in result
+        response.push item.value for id, item of result
       # Else if model
       else
         response = result.value
 
-      if options? and options.success?
-        options.success response
-      def.resolve response
+      # If model have a join method and join is required
+      if options.join is true and model.join? 
+        # Perform the join
+        model.join response, (err, joinedDatas) ->
+          if err?
+            _error err
+          else
+            _success joinedDatas
+        return
+      else if typeof options.join is "function"
+        options.join model, response, (err, joinedDatas) ->
+          if err?
+            _error err
+          else
+            _success joinedDatas
+        return
+      # Else send response
+      _success response
 
       if options.trace
         console.log "  - response:"
         console.log response
         console.log "-----"
 
+    if options.trace
+        console.log "-----"
+        console.log "Backbone Couchbase:"
+        console.log " - method:"
+        console.log method
     # Create a new object
     if method is "create" or (options.create? and options.create)
       model.set model.idAttribute, uuid.v4() if model.isNew()
@@ -153,9 +245,28 @@ module.exports = (options = {}) ->
     else if method is "read"
       # Read collection
       if model.models?
-        query = ViewQuery.from model.url, options.viewName || model.defaultView
-        query.custom options.custom if options.custom?
-        bucket.query query, couchbase_callback
+        # If IDS are already provided, do a multiget instead of query a view
+        if options.ids?
+          # If the id is a string, convert to array in case of only one id is wanted
+          if typeof options.ids is "string"
+            options.ids = [options.ids]
+          # In case of its not an array
+          unless _.isArray options.ids
+            # Throw an error
+            _error new Error "options.ids must be a String or an Array!"
+          else
+            # Get a collection from a list of ids
+            bucket.getMulti _keysFormat(model.url, options.ids), couchbase_callback
+        else
+          # Read a query
+          query = ViewQuery.from model.designDocument || model.url, options.viewName || model.defaultView
+          
+          if options.custom?
+            query.custom( options.custom )
+          query.reduce options.reduce || false
+          # If stale is false, it waits for the last elements to be indexed
+          query.stale options.stale if options.stale?#|| ViewQuery.Update.BEFORE#ViewQuery.Update.BEFORE ViewQuery.Update.NONE ViewQuery.Update.AFTER
+          bucket.query query, couchbase_callback
       # Read model
       else
         bucket.get _keyFormat(model.url()), couchbase_callback
@@ -171,7 +282,7 @@ module.exports = (options = {}) ->
 
         _.extend dbModel, model.toJSON()
 
-        bucket.replace _keyFormat(model.url()), dbModel, (err, result) ->
+        bucket.replace  _keyFormat(model.url()), dbModel, (err, result) ->
           if err?
             couchbase_callback err, result
             return false
@@ -182,8 +293,10 @@ module.exports = (options = {}) ->
     else if method is "delete"
       bucket.remove  _keyFormat(model.url()), couchbase_callback
     else
+      # Send an error if method isnt reconised
       couchbase_callback { code: 500, message: "#{method}: Wrong or empty method for Backbone-Couchbase-Sync" }
 
-          
+    # Trigger request event is case of listening
     model.trigger 'request', model, def.promise, options
+    # Return the promise
     return def.promise
