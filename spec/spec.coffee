@@ -179,7 +179,7 @@ describe "Model CRUD and Collection fetch Operations", ->
             create: true
             error: (model, error, options) ->
               error.status.should.be.equal 409
-              error.message.should.be.eql new Error "key already exists"
+              error.message.should.be.a("string")
               done()
             success: (model, response, options) -> 
               done(new Error "Should Fail!")
@@ -298,7 +298,7 @@ describe "Model CRUD and Collection fetch Operations", ->
       updateTestModel.save null, {
         error: (model, error, options) ->
           error.status.should.be.equal 404
-          error.message.should.be.eql new Error "key does not exist"
+          error.message.should.be.a "string"
           done()
 
         success: (model, response, options) ->
@@ -417,7 +417,7 @@ describe "Model CRUD and Collection fetch Operations", ->
         patch: true
         error: (model, error, options) ->
           error.status.should.be.equal 404
-          error.message.should.be.eql new Error "key does not exist"
+          error.message.should.be.a "string"
           done()
 
         success: (model, response, options) ->
@@ -524,7 +524,7 @@ describe "Model CRUD and Collection fetch Operations", ->
       pachedModel.destroy {
         error: (model, error, options) ->
           error.status.should.be.equal 404
-          error.message.should.be.eql new Error "key does not exist"
+          error.message.should.be.a "string"
           done()
 
         success: (model, response, options) ->
@@ -630,15 +630,22 @@ describe "Model CRUD and Collection fetch Operations", ->
       fetchedModel.fetch {
         error: (model, error, options) ->
           error.status.should.be.equal 404
-          error.message.should.be.eql new Error "key does not exist"
+          error.message.should.be.a "string"
           done()
 
         success: (model, response, options) ->
           done(new Error "Should Fail!")
       }
 
-  describe "Fetch Collection", ->
+  describe "Model Multi Querry Joints" ->
+    it "Developped but need to do the unit tests" ->
+      done(new Error "Todo: unit test")
 
+  describe "Collection Multi Querry Joints" ->
+    it "Developped but need to do the unit tests" ->
+      done(new Error "Todo: unit test")
+
+  describe "Fetch Collection", ->
     it "Should return an error if design document name (collection.url) isnt setup", (done) ->
       TestCollection = Backbone.Collection.extend {}
 
@@ -648,33 +655,38 @@ describe "Model CRUD and Collection fetch Operations", ->
       done()
 
     it "Should return an error if design document doesn't exist in bucket", (done) ->
-      done()
+      done(new Error "Todo: unit test")
 
     it "Should return an error if collection.defaultView or option.viewName isnt defined", (done) ->
-      done()
+      done(new Error "Todo: unit test")
 
     it "Should return the models datas", (done) ->
-      done()
+      done(new Error "Todo: unit test")
+
+  describe "N1QL Collection fetch" ->
+    it "Need to be developped" ->
+      done(new Error "Todo: unit test")
+
 
 describe "Sync integration", ->
 
   describe "Global sync (rewrite the Backbone.sync)", ->
 
     it "Should rewrite the sync to assign a global bucket to backbone", (done) ->
-      done()
+      done(new Error "Todo: unit test")
 
   describe "Specific sync (rewrite model.prototype.sync or collection.prototype.sync)", ->
 
     it "Should rewrite the sync to a specif bucket for only one model", (done) ->
-      done()
+      done(new Error "Todo: unit test")
 
     it "Should rewrite the sync to a specific bucket for only one collection", (done) ->
-      done()
+      done(new Error "Todo: unit test")
 
   describe "Separator", ->
 
     it "Should replace the slash \"/\" separator by a double coma \"::\" by default", (done) ->
-      done()
+      done(new Error "Todo: unit test")
 
     it "Should replace the slash \"/\" separator by a custom separator when setup in options", (done) ->
-      done()
+      done(new Error "Todo: unit test")

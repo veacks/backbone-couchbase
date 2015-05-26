@@ -22,9 +22,9 @@
   },
   "homepage": "https://github.com/veacks/backbone-couchbase",
   "dependencies": {
-    "couchbase": "~2.0.2",
-    "q": "~1.1.2",
+    "couchbase": "^2.0.8",
     "node-uuid": "~1.4.2",
+    "q": "~1.1.2",
     "underscore": "~1.7.0"
   },
   "devDependencies": {

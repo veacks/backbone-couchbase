@@ -45,7 +45,7 @@ Backbone.Collection::fetch = (options) ->
 # @option {boolean} [httpError=false] - Format couchbase error to http friendly status
 # @return {function} Backbone Couchbase Sync function
 ###
-module.exports = (options) ->
+module.exports = (options = {}) ->
   # Check if bucket or connections are present
   unless options.bucket? or options.connection?
     throw new Error "Bucket or Connection object is required to generate sync method"
