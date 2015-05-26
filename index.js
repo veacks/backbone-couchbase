@@ -69,6 +69,9 @@
 
   module.exports = function(options) {
     var bucket, cluster, httpError, idGen, sep, _couchbaseErrorFormat, _keyFormat, _keysFormat;
+    if (options == null) {
+      options = {};
+    }
     if (!((options.bucket != null) || (options.connection != null))) {
       throw new Error("Bucket or Connection object is required to generate sync method");
     }
