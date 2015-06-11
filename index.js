@@ -68,29 +68,10 @@
    */
 
   module.exports = function(options) {
-    var bucket, cluster, httpError, idGen, sep, _couchbaseErrorFormat, _keyFormat, _keysFormat;
+    var bucket, cluster, connectionCb, def, httpError, idGen, sep, _couchbaseErrorFormat, _keyFormat, _keysFormat, _syncMethod;
     if (options == null) {
       options = {};
     }
-    if (!((options.bucket != null) || (options.connection != null))) {
-      throw new Error("Bucket or Connection object is required to generate sync method");
-    }
-    if (options.bucket != null) {
-      bucket = options.bucket;
-    } else if (options.connection != null) {
-      if (!((options.connection.cluster != null) && (options.connection.bucket != null))) {
-        throw new Error("Connection bucket and cluster are required");
-      }
-      cluster = new couchbase.Cluster(options.connection.cluster);
-      if (options.connection.password != null) {
-        bucket = cluster.openBucket(options.connection.bucket, options.connection.password);
-      } else {
-        bucket = cluster.openBucket(options.connection.bucket);
-      }
-    }
-    httpError = options.httpError || true;
-    sep = options.sep || "::";
-    idGen = options.idGen || uuid;
 
     /*
      * Format the document keys
@@ -154,7 +135,7 @@
      * @option {boolean} create - Force creation with a specific key 
      * @return promise
      */
-    return function(method, model, options) {
+    _syncMethod = function(method, model, options) {
       var couchbase_callback, def, query, _error, _success;
       def = Q.defer();
 
@@ -336,6 +317,42 @@
       model.trigger('request', model, def.promise, options);
       return def.promise;
     };
+
+    /*
+     * Set up and check the bucket connection
+     */
+    def = Q.defer();
+    if (!((options.bucket != null) || (options.connection != null))) {
+      throw new Error("Bucket or Connection object is required to generate sync method");
+    }
+    if (options.bucket != null) {
+      bucket = options.bucket;
+    } else if (options.connection != null) {
+      if (!((options.connection.cluster != null) && (options.connection.bucket != null))) {
+        throw new Error("Connection bucket and cluster are required");
+      }
+      cluster = new couchbase.Cluster(options.connection.cluster);
+
+      /*
+       * Connection callback
+       */
+      connectionCb = function(err) {
+        if (err != null) {
+          return def.reject(err);
+        } else {
+          return def.resolve(_syncMethod);
+        }
+      };
+      if (options.connection.password != null) {
+        bucket = cluster.openBucket(options.connection.bucket, options.connection.password, connectionCb);
+      } else {
+        bucket = cluster.openBucket(options.connection.bucket, connectionCb);
+      }
+    }
+    httpError = options.httpError || true;
+    sep = options.sep || "::";
+    idGen = options.idGen || uuid;
+    return def.promise;
   };
 
 }).call(this);

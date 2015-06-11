@@ -46,33 +46,6 @@ Backbone.Collection::fetch = (options) ->
 # @return {function} Backbone Couchbase Sync function
 ###
 module.exports = (options = {}) ->
-  # Check if bucket or connections are present
-  unless options.bucket? or options.connection?
-    throw new Error "Bucket or Connection object is required to generate sync method"
-
-  # Assign bucket injected bucket
-  if options.bucket?
-    bucket = options.bucket
-
-  # Create bucket with conf datas
-  else if options.connection?
-    # Retrun an error if cluster or bucket parameters are missing
-    unless options.connection.cluster? and options.connection.bucket?
-      throw new Error "Connection bucket and cluster are required"
-
-    cluster = new couchbase.Cluster options.connection.cluster
-    if options.connection.password?
-      bucket = cluster.openBucket options.connection.bucket, options.connection.password
-    else
-      bucket = cluster.openBucket options.connection.bucket
-
-  # Error formating
-  httpError = options.httpError || true
-  # Separator
-  sep = options.sep || "::"
-  # Id generator
-  idGen = options.idGen || uuid
-
   ###
   # Format the document keys
   # @private
@@ -129,7 +102,7 @@ module.exports = (options = {}) ->
   # @option {boolean} create - Force creation with a specific key 
   # @return promise
   ###
-  return (method, model, options) ->
+  _syncMethod = (method, model, options) ->
     def = Q.defer()
 
     ###
@@ -300,3 +273,47 @@ module.exports = (options = {}) ->
     model.trigger 'request', model, def.promise, options
     # Return the promise
     return def.promise
+
+  ###
+  # Set up and check the bucket connection
+  ###
+  def = Q.defer()
+
+  # Check if bucket or connections are present
+  unless options.bucket? or options.connection?
+    throw new Error "Bucket or Connection object is required to generate sync method"
+
+  # Assign bucket injected bucket
+  if options.bucket?
+    bucket = options.bucket
+
+  # Create bucket with conf datas
+  else if options.connection?
+    # Retrun an error if cluster or bucket parameters are missing
+    unless options.connection.cluster? and options.connection.bucket?
+      throw new Error "Connection bucket and cluster are required"
+
+    cluster = new couchbase.Cluster options.connection.cluster
+
+    ###
+    # Connection callback
+    ###
+    connectionCb = (err) ->
+      if err?
+        def.reject err
+      else
+        def.resolve _syncMethod
+    
+    if options.connection.password?
+      bucket = cluster.openBucket options.connection.bucket, options.connection.password, connectionCb
+    else
+      bucket = cluster.openBucket options.connection.bucket, connectionCb
+  
+  # Error formating
+  httpError = options.httpError || true
+  # Separator
+  sep = options.sep || "::"
+  # Id generator
+  idGen = options.idGen || uuid
+  
+  return def.promise

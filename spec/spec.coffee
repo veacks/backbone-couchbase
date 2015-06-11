@@ -637,12 +637,12 @@ describe "Model CRUD and Collection fetch Operations", ->
           done(new Error "Should Fail!")
       }
 
-  describe "Model Multi Querry Joints" ->
-    it "Developped but need to do the unit tests" ->
+  describe "Model Multi Querry Joints", ->
+    it "Developped but need to do the unit tests", (done) ->
       done(new Error "Todo: unit test")
 
-  describe "Collection Multi Querry Joints" ->
-    it "Developped but need to do the unit tests" ->
+  describe "Collection Multi Querry Joints", ->
+    it "Developped but need to do the unit tests", (done) ->
       done(new Error "Todo: unit test")
 
   describe "Fetch Collection", ->
@@ -663,8 +663,8 @@ describe "Model CRUD and Collection fetch Operations", ->
     it "Should return the models datas", (done) ->
       done(new Error "Todo: unit test")
 
-  describe "N1QL Collection fetch" ->
-    it "Need to be developped" ->
+  describe "N1QL Collection fetch", ->
+    it "Need to be developped", (done) ->
       done(new Error "Todo: unit test")
 
 
