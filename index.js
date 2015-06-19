@@ -337,11 +337,52 @@
        * Connection callback
        */
       connectionCb = function(err) {
+        var checkDesignDoc, dbm;
         if (err != null) {
-          return def.reject(err);
-        } else {
-          return def.resolve(_syncMethod);
+          def.reject(err);
+          return;
         }
+        dbm = bucket.manager();
+        if (options.designDocuments != null) {
+          checkDesignDoc = function(designDocName, callback) {
+            return dbm.getDesignDocument(designDocName, function(err, serverDesignDoc) {
+              if (err != null) {
+                if (err.message === "missing" || err.message === "deleted") {
+                  dbm.insertDesignDocument(designDocName, options.designDocuments[designDocName], function(err) {
+                    if (err != null) {
+                      return callback(err);
+                    } else {
+                      return callback();
+                    }
+                  });
+                } else {
+                  callback(err);
+                }
+                return;
+              }
+              if (!_.isEqual(serverDesignDoc, options.designDocuments[designDocName])) {
+                dbm.upsertDesignDocument(designDocName, options.designDocuments[designDocName], function(err) {
+                  if (err != null) {
+                    return callback(err);
+                  } else {
+                    return callback();
+                  }
+                });
+                return;
+              }
+              return callback();
+            });
+          };
+          async.map(Object.keys(options.designDocuments), checkDesignDoc, function(err) {
+            if (err != null) {
+              def.reject(err);
+              return;
+            }
+            return def.resolve(_syncMethod);
+          });
+          return;
+        }
+        return def.resolve(_syncMethod);
       };
       if (options.connection.password != null) {
         bucket = cluster.openBucket(options.connection.bucket, options.connection.password, connectionCb);
