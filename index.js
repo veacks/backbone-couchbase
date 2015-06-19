@@ -66,7 +66,7 @@
 
   _ = require("underscore");
 
-  IndexModel = require("IndexModel");
+  IndexModel = require("./IndexModel");
 
 
   /*
@@ -161,7 +161,7 @@
 
   Backbone = require("backbone");
 
-  N1qlIndexesChecker = require("N1qlIndexesChecker");
+  N1qlIndexesChecker = require("./N1qlIndexesChecker");
 
 
   /*
@@ -284,7 +284,7 @@
      * @return promise
      */
     _syncMethod = function(method, model, options) {
-      var couchbase_callback, def, query, _ensureIndexes, _error, _success;
+      var couchbase_callback, def, designDocuement, query, viewName, _ensureIndexes, _error, _success;
       def = Q.defer();
 
       /*
@@ -429,7 +429,9 @@
             bucket.getMulti(_keysFormat(model.url, options.ids), couchbase_callback);
           }
         } else if (model.type === "designDocument") {
-          query = ViewQuery.from(model.designDocument || model.url, options.viewName || model.defaultView);
+          designDocuement = model.designDocument || model.url.split("/")[0];
+          viewName = model.viewName || model.url.split("/")[1];
+          query = ViewQuery.from(designDocuement, viewName);
           if (options.custom != null) {
             query.custom(options.custom);
           }

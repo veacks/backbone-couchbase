@@ -243,8 +243,11 @@ module.exports = (options = {}) ->
 
       # Read model or a collection by design document
       else if model.type is "designDocument"
+        designDocuement = model.designDocument || model.url.split("/")[0]
+        viewName = model.viewName || model.url.split("/")[1]
+        
         # Read a query
-        query = ViewQuery.from model.designDocument || model.url, options.viewName || model.defaultView
+        query = ViewQuery.from designDocuement, viewName
         query.custom(options.custom) if options.custom?
 
         # If a model asking for query, implement with a reduce
