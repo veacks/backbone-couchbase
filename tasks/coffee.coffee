@@ -5,5 +5,11 @@ module.exports = coffee = (grunt) ->
   grunt.loadNpmTasks "grunt-contrib-coffee"
 
   {
-    'index.js': ['src/**/*.coffee']
+    build:
+      expand: true
+      flatten: true
+      cwd: "src/"
+      src: "*.coffee"
+      dest: "build/"
+      ext: ".js"
   }

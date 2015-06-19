@@ -336,28 +336,28 @@ module.exports = (options = {}) ->
       dbm = bucket.manager()
       if options.designDocuments?
         checkDesignDoc = (designDocName, callback) ->
-            # Get server design document
-            dbm.getDesignDocument designDocName, (err, serverDesignDoc) ->
-              # If there is some error finding the design document
-              if err?
-                # If the design document doesnt exist on the server
-                if err.message is "missing" or err.message is "deleted"
-                  # Insert the design document
-                  dbm.insertDesignDocument designDocName, options.designDocuments[designDocName], (err) ->
-                    if err? then callback(err) else callback()
-                else
-                  #If another error
-                  callback err
-                return
-
-              # If the Deign Document version on server isnt up to date
-              unless _.isEqual serverDesignDoc, options.designDocuments[designDocName]
-                #console.warn "Replaced the Couchbase Design Document called \"#{viewName}\""
-                # Then set the local one
-                dbm.upsertDesignDocument designDocName, options.designDocuments[designDocName], (err) ->
+          # Get server design document
+          dbm.getDesignDocument designDocName, (err, serverDesignDoc) ->
+            # If there is some error finding the design document
+            if err?
+              # If the design document doesnt exist on the server
+              if err.message is "missing" or err.message is "deleted"
+                # Insert the design document
+                dbm.insertDesignDocument designDocName, options.designDocuments[designDocName], (err) ->
                   if err? then callback(err) else callback()
-                return
-              callback()
+              else
+                #If another error
+                callback err
+              return
+
+            # If the Deign Document version on server isnt up to date
+            unless _.isEqual serverDesignDoc, options.designDocuments[designDocName]
+              #console.warn "Replaced the Couchbase Design Document called \"#{viewName}\""
+              # Then set the local one
+              dbm.upsertDesignDocument designDocName, options.designDocuments[designDocName], (err) ->
+                if err? then callback(err) else callback()
+              return
+            callback()
         # Check all design documents
         async.map Object.keys(options.designDocuments), checkDesignDoc, (err) ->
           if err?
