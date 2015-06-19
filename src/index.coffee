@@ -2,9 +2,13 @@ Q = require "q"
 uuid = require "node-uuid"
 couchbase = require "couchbase"
 ViewQuery = couchbase.ViewQuery
+N1qlQuery = couchbase.N1qlQuery
+
 _ = require "underscore"
 async = require "async"
 Backbone = require "backbone"
+
+N1qlIndexesChecker = require "./N1qlIndexesChecker"
 
 ###
 # Set up the join functionally at the Backbone Collection level
@@ -122,6 +126,14 @@ module.exports = (options = {}) ->
       if options? and options.error?
         options.error _couchbaseErrorFormat err
       def.reject _couchbaseErrorFormat err
+    
+    ###
+    # N1ql indexes
+    ###
+    _
+    
+    _ensureIndexes = (indexes) ->
+
 
     ###
     # Callback to get the updated datas
@@ -154,7 +166,7 @@ module.exports = (options = {}) ->
 
       # If collection result
       if _.isArray result
-        if options? and options.reduce
+        if model.reduce
           response = if result[0]? then result[0].value else 0
         else
           response = []
@@ -214,33 +226,47 @@ module.exports = (options = {}) ->
 
         bucket.get _keyFormat(model.url()), couchbase_callback
 
-    # Read an object
+    # Read model or a collection
     else if method is "read"
-      # Read collection
-      if model.models?
-        # If IDS are already provided, do a multiget instead of query a view
-        if options.ids?
-          # If the id is a string, convert to array in case of only one id is wanted
-          if typeof options.ids is "string"
-            options.ids = [options.ids]
-          # In case of its not an array
-          unless _.isArray options.ids
-            # Throw an error
-            _error new Error "options.ids must be a String or an Array!"
-          else
-            # Get a collection from a list of ids
-            bucket.getMulti _keysFormat(model.url, options.ids), couchbase_callback
+      # Read collection bu multiget when ids are setup
+      if model.models? and options.ids?
+        # If the id is a string, convert to array in case of only one id is wanted
+        if typeof options.ids is "string"
+          options.ids = [options.ids]
+        # In case of its not an array
+        unless _.isArray options.ids
+          # Throw an error
+          _error new Error "options.ids must be a String or an Array!"
         else
-          # Read a query
-          query = ViewQuery.from model.designDocument || model.url, options.viewName || model.defaultView
-          
-          if options.custom?
-            query.custom( options.custom )
-          query.reduce options.reduce || false
-          # If stale is false, it waits for the last elements to be indexed
-          query.stale options.stale if options.stale?#|| ViewQuery.Update.BEFORE#ViewQuery.Update.BEFORE ViewQuery.Update.NONE ViewQuery.Update.AFTER
-          bucket.query query, couchbase_callback
-      # Read model
+          # Get a collection from a list of ids
+          bucket.getMulti _keysFormat(model.url, options.ids), couchbase_callback
+
+      # Read model or a collection by design document
+      else if model.type is "designDocument"
+        # Read a query
+        query = ViewQuery.from model.designDocument || model.url, options.viewName || model.defaultView
+        query.custom(options.custom) if options.custom?
+
+        # If a model asking for query, implement with a reduce
+        query.reduce(true) unless model.models?
+        
+        # If stale is false, it waits for the last elements to be indexed
+        query.stale options.stale if options.stale?#|| ViewQuery.Update.BEFORE#ViewQuery.Update.BEFORE ViewQuery.Update.NONE ViewQuery.Update.AFTER
+        # Run the query
+        bucket.query query, couchbase_callback
+      
+      # Read model or collection by N1ql
+      else if model.type is "N1ql"
+        # Check if all required indexes exists and create them if not
+        N1qlIndexesChecker bucket, model.indexes || [], (err) ->
+
+          # Perform N1QL query
+          query = N1qlQuery.fromString model.url()
+          if options.params?
+            bucket.query query, options.params, couchbase_callback
+          else
+            bucket.query query, couchbase_callback
+      # Get data by simple key get
       else
         bucket.get _keyFormat(model.url()), couchbase_callback
 

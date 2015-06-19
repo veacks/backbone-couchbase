@@ -1,5 +1,149 @@
+
+/*
+ * @class IndexModel
+ * @description Help to manage dee equality for indexes
+ */
+
 (function() {
-  var Backbone, Q, ViewQuery, async, couchbase, uuid, _, _originalCollectionFetch;
+  var IndexModel;
+
+  module.exports = IndexModel = (function() {
+
+    /*
+     * @member {string} name - name of the index
+     */
+    IndexModel.prototype.name = String;
+
+
+    /*
+     * @member {boolean}  is_primary - is a primary index
+     */
+
+    IndexModel.prototype.is_primary = Boolean;
+
+
+    /*
+     * @member {string} using - Type of indexing (GSI or VIEW)
+     */
+
+    IndexModel.prototype.using = String;
+
+
+    /*
+     * @member {array} index_key - Keys to index
+     */
+
+    IndexModel.prototype.index_key = Array;
+
+
+    /*
+     * @constructor
+     * @param {string} name - name of the index
+     * @param {boolean}  is_primary - is a primary index
+     * @param {string} using - Type of indexing (GSI or VIEW)
+     * @param {array} index_key - Keys to index
+     */
+
+    function IndexModel(name, is_primary, using, index_key) {
+      this.name = name;
+      this.is_primary = is_primary || true;
+      this.using = using || "GSI";
+      this.index_key = index_key || [];
+    }
+
+    return IndexModel;
+
+  })();
+
+}).call(this);
+
+(function() {
+  var IndexModel, N1qlIndexesChecker, N1qlQuery, async, _;
+
+  N1qlQuery = require("couchbase").N1qlQuery;
+
+  async = require("async");
+
+  _ = require("underscore");
+
+  IndexModel = require("IndexModel");
+
+
+  /*
+   * @method N1qlIndexesChecker
+   * @description Check if required indexes exists and create them if not
+   * @param {object} bucket - Couchbase bucket object
+   * @param {array} wantedIndexes - Indexes required
+   * @param {callback} cb - Callback
+   */
+
+  module.exports = N1qlIndexesChecker = function(bucket, wantedIndexes, cb) {
+    var currentIndexes;
+    wantedIndexes.unshift({
+      name: "#primary",
+      is_primary: true,
+      using: "GSI",
+      index_key: []
+    });
+    currentIndexes = [];
+    tasks.push(function(aCb) {
+      N1qlQuery.fromString("SELECT indexes.* FROM system:indexes WHERE keyspace_id=" + bucket.name + " USING GSI;");
+      return bucket.query(query, function(err, results) {
+        var createIndexes;
+        if (err != null) {
+          aCb(err);
+          return;
+        }
+        wantedIndexes = _.map(wantedIndexes, function(index) {
+          return new IndexModel(index.name, index.is_primary, index.using, index.index_key);
+        });
+        currentIndexes = _.map(results.results, function(index) {
+          return new IndexModel(index.name, index.is_primary, index.using, index.index_key);
+        });
+        createIndexes = _.union(wantedIndexes, currentIndexes);
+        return aCb();
+      });
+    });
+    tasks.push(function(aCb) {
+      var index, querys, _i, _len, _sendIndexQuery;
+      querys = [];
+      for (_i = 0, _len = createIndexes.length; _i < _len; _i++) {
+        index = createIndexes[_i];
+        if (index.is_primary) {
+          querys.push(N1qlQuery.fromString("CREATE PRIMARY INDEX ON `" + (bucket.name()) + "` USING " + index.using + ";"));
+        } else {
+          querys.push(N1qlQuery.fromString("CREATE `" + index.name + "` ON `" + (bucket.name()) + "` (" + (index.index_key.join(", ")) + ") USING " + index.using + ";"));
+        }
+      }
+      _sendIndexQuery = function(query, indexCb) {
+        return bucket.query(query, function(err, results) {
+          if (err != null) {
+            throw err;
+          }
+          return indexCb();
+        });
+      };
+      return async.map(querys, _sendIndexQuery, function(err) {
+        if (err != null) {
+          aCb(err);
+          return;
+        }
+        return aCb();
+      });
+    });
+    return async.series(tasks, function(err) {
+      if (err != null) {
+        cb(err);
+        return;
+      }
+      return cb();
+    });
+  };
+
+}).call(this);
+
+(function() {
+  var Backbone, N1qlIndexesChecker, N1qlQuery, Q, ViewQuery, async, couchbase, uuid, _, _originalCollectionFetch;
 
   Q = require("q");
 
@@ -9,11 +153,15 @@
 
   ViewQuery = couchbase.ViewQuery;
 
+  N1qlQuery = couchbase.N1qlQuery;
+
   _ = require("underscore");
 
   async = require("async");
 
   Backbone = require("backbone");
+
+  N1qlIndexesChecker = require("N1qlIndexesChecker");
 
 
   /*
@@ -136,7 +284,7 @@
      * @return promise
      */
     _syncMethod = function(method, model, options) {
-      var couchbase_callback, def, query, _error, _success;
+      var couchbase_callback, def, query, _ensureIndexes, _error, _success;
       def = Q.defer();
 
       /*
@@ -160,6 +308,12 @@
         }
         return def.reject(_couchbaseErrorFormat(err));
       };
+
+      /*
+       * N1ql indexes
+       */
+      _;
+      _ensureIndexes = function(indexes) {};
 
       /*
        * Callback to get the updated datas
@@ -195,7 +349,7 @@
           return;
         }
         if (_.isArray(result)) {
-          if ((options != null) && options.reduce) {
+          if (model.reduce) {
             response = result[0] != null ? result[0].value : 0;
           } else {
             response = [];
@@ -265,27 +419,36 @@
           return bucket.get(_keyFormat(model.url()), couchbase_callback);
         });
       } else if (method === "read") {
-        if (model.models != null) {
-          if (options.ids != null) {
-            if (typeof options.ids === "string") {
-              options.ids = [options.ids];
-            }
-            if (!_.isArray(options.ids)) {
-              _error(new Error("options.ids must be a String or an Array!"));
-            } else {
-              bucket.getMulti(_keysFormat(model.url, options.ids), couchbase_callback);
-            }
-          } else {
-            query = ViewQuery.from(model.designDocument || model.url, options.viewName || model.defaultView);
-            if (options.custom != null) {
-              query.custom(options.custom);
-            }
-            query.reduce(options.reduce || false);
-            if (options.stale != null) {
-              query.stale(options.stale);
-            }
-            bucket.query(query, couchbase_callback);
+        if ((model.models != null) && (options.ids != null)) {
+          if (typeof options.ids === "string") {
+            options.ids = [options.ids];
           }
+          if (!_.isArray(options.ids)) {
+            _error(new Error("options.ids must be a String or an Array!"));
+          } else {
+            bucket.getMulti(_keysFormat(model.url, options.ids), couchbase_callback);
+          }
+        } else if (model.type === "designDocument") {
+          query = ViewQuery.from(model.designDocument || model.url, options.viewName || model.defaultView);
+          if (options.custom != null) {
+            query.custom(options.custom);
+          }
+          if (model.models == null) {
+            query.reduce(true);
+          }
+          if (options.stale != null) {
+            query.stale(options.stale);
+          }
+          bucket.query(query, couchbase_callback);
+        } else if (model.type === "N1ql") {
+          N1qlIndexesChecker(bucket, model.indexes || [], function(err) {
+            query = N1qlQuery.fromString(model.url());
+            if (options.params != null) {
+              return bucket.query(query, options.params, couchbase_callback);
+            } else {
+              return bucket.query(query, couchbase_callback);
+            }
+          });
         } else {
           bucket.get(_keyFormat(model.url()), couchbase_callback);
         }
