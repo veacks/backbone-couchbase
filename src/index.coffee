@@ -261,7 +261,7 @@ module.exports = (options = {}) ->
         query.range(options.range) if options.range?
         
         # If a model asking for query, implement with a reduce
-        query.reduce(true) unless model.models?
+        query.reduce(unless model.models? then true else false)
 
         query.skip(skip) if options.skip?
         # If stale is false, it waits for the last elements to be indexed
