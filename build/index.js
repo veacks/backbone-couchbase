@@ -291,8 +291,41 @@
           if (options.custom != null) {
             query.custom(options.custom);
           }
+          if (options.full_set != null) {
+            query.full_set(options.full_set);
+          }
+          if (options.group != null) {
+            query.group(options.group);
+          }
+          if (options.group_level != null) {
+            query.group_level(options.group_level);
+          }
+          if (options.id_range != null) {
+            query.id_range(options.id_range);
+          }
+          if (options.include_docs != null) {
+            query.include_docs(options.include_docs);
+          }
+          if (options.key != null) {
+            query.key(options.key);
+          }
+          if (options.keys != null) {
+            query.keys(options.keys);
+          }
+          if (options.limit != null) {
+            query.limit(options.limit);
+          }
+          if (options.on_error != null) {
+            query.on_error(options.on_error);
+          }
+          if (options.range != null) {
+            query.range(options.range);
+          }
           if (model.models == null) {
             query.reduce(true);
+          }
+          if (options.skip != null) {
+            query.skip(skip);
           }
           if (options.stale != null) {
             query.stale(options.stale);

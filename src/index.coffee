@@ -245,16 +245,28 @@ module.exports = (options = {}) ->
       else if model.type is "designDocument"
         designDocuement = model.designDocument || model.url.split("/")[0]
         viewName = model.viewName || model.url.split("/")[1]
-        
+
         # Read a query
         query = ViewQuery.from designDocuement, viewName
         query.custom(options.custom) if options.custom?
-
+        query.full_set(options.full_set) if options.full_set?
+        query.group(options.group) if options.group?
+        query.group_level(options.group_level) if options.group_level?
+        query.id_range(options.id_range) if options.id_range?
+        query.include_docs(options.include_docs) if options.include_docs?
+        query.key(options.key) if options.key?
+        query.keys(options.keys) if options.keys?
+        query.limit(options.limit) if options.limit?
+        query.on_error(options.on_error) if options.on_error?
+        query.range(options.range) if options.range?
+        
         # If a model asking for query, implement with a reduce
         query.reduce(true) unless model.models?
-        
+
+        query.skip(skip) if options.skip?
         # If stale is false, it waits for the last elements to be indexed
         query.stale options.stale if options.stale?#|| ViewQuery.Update.BEFORE#ViewQuery.Update.BEFORE ViewQuery.Update.NONE ViewQuery.Update.AFTER
+
         # Run the query
         bucket.query query, couchbase_callback
       
