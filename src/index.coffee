@@ -239,7 +239,7 @@ module.exports = (options = {}) ->
           _error new Error "options.ids must be a String or an Array!"
         else
           # Get a collection from a list of ids
-          bucket.getMulti _keysFormat(options.ids), couchbase_callback
+          bucket.getMulti options.ids, couchbase_callback
 
       # Read model or a collection by design document
       else if model.type is "designDocument"

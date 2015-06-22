@@ -282,7 +282,7 @@
           if (!_.isArray(options.ids)) {
             _error(new Error("options.ids must be a String or an Array!"));
           } else {
-            bucket.getMulti(_keysFormat(options.ids), couchbase_callback);
+            bucket.getMulti(options.ids, couchbase_callback);
           }
         } else if (model.type === "designDocument") {
           designDocuement = model.designDocument || model.url.split("/")[0];
