@@ -282,7 +282,7 @@
           if (!_.isArray(options.ids)) {
             _error(new Error("options.ids must be a String or an Array!"));
           } else {
-            bucket.getMulti(_keysFormat(model.url, options.ids), couchbase_callback);
+            bucket.getMulti(_keysFormat(options.ids), couchbase_callback);
           }
         } else if (model.type === "designDocument") {
           designDocuement = model.designDocument || model.url.split("/")[0];
@@ -321,9 +321,7 @@
           if (options.range != null) {
             query.range(options.range);
           }
-          if (model.models == null) {
-            query.reduce(true);
-          }
+          query.reduce(model.models == null ? true : false);
           if (options.skip != null) {
             query.skip(skip);
           }
