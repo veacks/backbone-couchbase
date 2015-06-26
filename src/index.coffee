@@ -134,7 +134,8 @@ module.exports = (options = {}) ->
     
     _ensureIndexes = (indexes) ->
 
-
+    # Set reduced view to false
+    reducedView = false
     ###
     # Callback to get the updated datas
     # @private
@@ -166,7 +167,7 @@ module.exports = (options = {}) ->
 
       # If collection result
       if _.isArray result
-        if model.reduce
+        if reducedView
           response = if result[0]? then result[0].value else 0
         else
           response = []
@@ -261,7 +262,12 @@ module.exports = (options = {}) ->
         query.range(options.range) if options.range?
         
         # If a model asking for query, implement with a reduce
-        query.reduce(unless model.models? then true else false)
+        if (not model.models? and not options.reduce?) or options.reduce
+          reducedView = true
+          query.reduce(true)
+        else
+          query.reduce(false)
+
 
         query.skip(skip) if options.skip?
         # If stale is false, it waits for the last elements to be indexed

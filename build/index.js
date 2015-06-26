@@ -140,7 +140,7 @@
      * @return promise
      */
     _syncMethod = function(method, model, options) {
-      var couchbase_callback, def, designDocuement, query, viewName, _ensureIndexes, _error, _success;
+      var couchbase_callback, def, designDocuement, query, reducedView, viewName, _ensureIndexes, _error, _success;
       def = Q.defer();
 
       /*
@@ -170,6 +170,7 @@
        */
       _;
       _ensureIndexes = function(indexes) {};
+      reducedView = false;
 
       /*
        * Callback to get the updated datas
@@ -205,7 +206,7 @@
           return;
         }
         if (_.isArray(result)) {
-          if (model.reduce) {
+          if (reducedView) {
             response = result[0] != null ? result[0].value : 0;
           } else {
             response = [];
@@ -321,7 +322,12 @@
           if (options.range != null) {
             query.range(options.range);
           }
-          query.reduce(model.models == null ? true : false);
+          if (((model.models == null) && (options.reduce == null)) || options.reduce) {
+            reducedView = true;
+            query.reduce(true);
+          } else {
+            query.reduce(false);
+          }
           if (options.skip != null) {
             query.skip(skip);
           }
