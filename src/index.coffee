@@ -340,7 +340,7 @@ module.exports = (options = {}) ->
           # If there is some error finding the design document
           if err?
             # If the design document doesnt exist on the server
-            if err.message is "missing" or err.message is "deleted"
+            if err.message is "missing" or err.message is "not_found" or err.message is "deleted"
               # Insert the design document
               dbm.insertDesignDocument designDocName, options.designDocuments[designDocName], (err) ->
                 if err? then callback(err) else callback()
@@ -391,7 +391,7 @@ module.exports = (options = {}) ->
         def.reject err
         return
       _viewsChecker()
-    
+
     if options.connection.password?
       bucket = cluster.openBucket options.connection.bucket, options.connection.password, connectionCb
     else

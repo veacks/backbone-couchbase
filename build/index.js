@@ -390,7 +390,7 @@
         checkDesignDoc = function(designDocName, callback) {
           return dbm.getDesignDocument(designDocName, function(err, serverDesignDoc) {
             if (err != null) {
-              if (err.message === "missing" || err.message === "deleted") {
+              if (err.message === "missing" || err.message === "not_found" || err.message === "deleted") {
                 dbm.insertDesignDocument(designDocName, options.designDocuments[designDocName], function(err) {
                   if (err != null) {
                     return callback(err);
