@@ -72,7 +72,7 @@
    */
 
   module.exports = function(options) {
-    var bucket, cluster, connectionCb, def, httpError, idGen, sep, _couchbaseErrorFormat, _keyFormat, _keysFormat, _syncMethod;
+    var bucket, cluster, connectionCb, def, httpError, idGen, sep, _couchbaseErrorFormat, _keyFormat, _keysFormat, _syncMethod, _viewsChecker;
     if (options == null) {
       options = {};
     }
@@ -401,8 +401,53 @@
     if (!((options.bucket != null) || (options.connection != null))) {
       throw new Error("Bucket or Connection object is required to generate sync method");
     }
+    _viewsChecker = function() {
+      var checkDesignDoc, dbm;
+      dbm = bucket.manager();
+      if (options.designDocuments != null) {
+        checkDesignDoc = function(designDocName, callback) {
+          return dbm.getDesignDocument(designDocName, function(err, serverDesignDoc) {
+            if (err != null) {
+              if (err.message === "missing" || err.message === "not_found" || err.message === "deleted") {
+                dbm.insertDesignDocument(designDocName, options.designDocuments[designDocName], function(err) {
+                  if (err != null) {
+                    return callback(err);
+                  } else {
+                    return callback();
+                  }
+                });
+              } else {
+                callback(err);
+              }
+              return;
+            }
+            if (!_.isEqual(serverDesignDoc, options.designDocuments[designDocName])) {
+              dbm.upsertDesignDocument(designDocName, options.designDocuments[designDocName], function(err) {
+                if (err != null) {
+                  return callback(err);
+                } else {
+                  return callback();
+                }
+              });
+              return;
+            }
+            return callback();
+          });
+        };
+        async.map(Object.keys(options.designDocuments), checkDesignDoc, function(err) {
+          if (err != null) {
+            def.reject(err);
+            return;
+          }
+          return def.resolve(_syncMethod);
+        });
+        return;
+      }
+      return def.resolve(_syncMethod);
+    };
     if (options.bucket != null) {
       bucket = options.bucket;
+      _viewsChecker();
     } else if (options.connection != null) {
       if (!((options.connection.cluster != null) && (options.connection.bucket != null))) {
         throw new Error("Connection bucket and cluster are required");
@@ -413,52 +458,11 @@
        * Connection callback
        */
       connectionCb = function(err) {
-        var checkDesignDoc, dbm;
         if (err != null) {
           def.reject(err);
           return;
         }
-        dbm = bucket.manager();
-        if (options.designDocuments != null) {
-          checkDesignDoc = function(designDocName, callback) {
-            return dbm.getDesignDocument(designDocName, function(err, serverDesignDoc) {
-              if (err != null) {
-                if (err.message === "missing" || err.message === "deleted") {
-                  dbm.insertDesignDocument(designDocName, options.designDocuments[designDocName], function(err) {
-                    if (err != null) {
-                      return callback(err);
-                    } else {
-                      return callback();
-                    }
-                  });
-                } else {
-                  callback(err);
-                }
-                return;
-              }
-              if (!_.isEqual(serverDesignDoc, options.designDocuments[designDocName])) {
-                dbm.upsertDesignDocument(designDocName, options.designDocuments[designDocName], function(err) {
-                  if (err != null) {
-                    return callback(err);
-                  } else {
-                    return callback();
-                  }
-                });
-                return;
-              }
-              return callback();
-            });
-          };
-          async.map(Object.keys(options.designDocuments), checkDesignDoc, function(err) {
-            if (err != null) {
-              def.reject(err);
-              return;
-            }
-            return def.resolve(_syncMethod);
-          });
-          return;
-        }
-        return def.resolve(_syncMethod);
+        return _viewsChecker();
       };
       if (options.connection.password != null) {
         bucket = cluster.openBucket(options.connection.bucket, options.connection.password, connectionCb);
