@@ -229,7 +229,7 @@ module.exports = (options = {}) ->
 
     # Read model or a collection
     else if method is "read"
-      # Read collection bu multiget when ids are setup
+      # Read collection bu multiget when model ids are setup
       if model.models? and options.ids?
         # If the id is a string, convert to array in case of only one id is wanted
         if typeof options.ids is "string"
@@ -262,6 +262,10 @@ module.exports = (options = {}) ->
 
           # Get a collection from a list of ids
           bucket.getMulti formatedIds, couchbase_callback
+
+      # Read collection multiget when document ids are setup
+      else if model.models? and options.docIds?
+        bucket.getMulti options.docIds, couchbase_callback
 
       # Read model or a collection by design document
       else if model.type is "designDocument"

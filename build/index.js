@@ -301,6 +301,8 @@
             });
             bucket.getMulti(formatedIds, couchbase_callback);
           }
+        } else if ((model.models != null) && (options.docIds != null)) {
+          bucket.getMulti(options.docIds, couchbase_callback);
         } else if (model.type === "designDocument") {
           designDocuement = model.designDocument || model.url.split("/")[0];
           viewName = model.viewName || model.url.split("/")[1];
