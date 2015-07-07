@@ -140,7 +140,7 @@
      * @return promise
      */
     _syncMethod = function(method, model, options) {
-      var couchbase_callback, def, designDocuement, query, reducedView, viewName, _ensureIndexes, _error, _success;
+      var couchbase_callback, def, designDocuement, formatedIds, query, reducedView, viewName, _ensureIndexes, _error, _success;
       def = Q.defer();
 
       /*
@@ -283,7 +283,23 @@
           if (!_.isArray(options.ids)) {
             _error(new Error("options.ids must be a String or an Array!"));
           } else {
-            bucket.getMulti(options.ids, couchbase_callback);
+            formatedIds = _.map(options.ids, function(id) {
+              var tempModel;
+              if (model.model != null) {
+                tempModel = new model.model();
+                if (_.isObject(id)) {
+                  tempModel.set(id);
+                } else {
+                  tempModel.set(tempModel.idAttribute, id);
+                }
+                return _keyFormat(tempModel.url());
+              }
+              if (_.isFunction(model.url)) {
+                return _keyFormat("" + (model.url()) + "/" + id);
+              }
+              return _keyFormat("" + model.url + "/" + id);
+            });
+            bucket.getMulti(formatedIds, couchbase_callback);
           }
         } else if (model.type === "designDocument") {
           designDocuement = model.designDocument || model.url.split("/")[0];

@@ -240,14 +240,6 @@
 	"buffers":
 	[
 		{
-			"file": ".gitignore",
-			"settings":
-			{
-				"buffer_size": 720,
-				"line_ending": "Unix"
-			}
-		},
-		{
 			"file": "spec/spec.coffee",
 			"settings":
 			{
@@ -259,7 +251,55 @@
 			"file": "src/index.coffee",
 			"settings":
 			{
-				"buffer_size": 9868,
+				"buffer_size": 13094,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "build/index.js",
+			"settings":
+			{
+				"buffer_size": 14850,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "src/N1qlIndexesChecker.coffee",
+			"settings":
+			{
+				"buffer_size": 2213,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "src/IndexModel.coffee",
+			"settings":
+			{
+				"buffer_size": 853,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "index.js",
+			"settings":
+			{
+				"buffer_size": 36,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "tasks/coffee.coffee",
+			"settings":
+			{
+				"buffer_size": 245,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "Gruntfile.coffee",
+			"settings":
+			{
+				"buffer_size": 219,
 				"line_ending": "Unix"
 			}
 		},
@@ -275,7 +315,7 @@
 			"file": "package.json",
 			"settings":
 			{
-				"buffer_size": 1121,
+				"buffer_size": 1075,
 				"line_ending": "Unix"
 			}
 		}
@@ -331,12 +371,14 @@
 	"expanded_folders":
 	[
 		"/Users/vdubois/Sites/backbone-couchbase",
+		"/Users/vdubois/Sites/backbone-couchbase/build",
 		"/Users/vdubois/Sites/backbone-couchbase/spec",
 		"/Users/vdubois/Sites/backbone-couchbase/src",
 		"/Users/vdubois/Sites/backbone-couchbase/tasks"
 	],
 	"file_history":
 	[
+		"/Users/vdubois/Sites/backbone-couchbase/.gitignore",
 		"/Users/valentin/Sites/plm/public/templates/layouts/master.dust",
 		"/Users/valentin/Sites/plm/public/js/app.coffee",
 		"/Users/valentin/Sites/plm/public/templates/cms/blocks/block_base.dust",
@@ -463,8 +505,7 @@
 		"/Users/valentin/Sites/ESA/AITSL/CMS/trunk/AITSL/App_Master/New-Base-Content.master",
 		"/Users/valentin/Sites/ESA/AITSL/CMS/trunk/AITSL/App_Master/New-Base-Content-3Col.Master",
 		"/Users/valentin/Sites/ESA/AITSL/CMS/trunk/AITSL/public/research-expert-talk.html",
-		"/Users/valentin/Sites/ESA/AITSL/CMS/trunk/AITSL/public/research-item.html",
-		"/Users/valentin/Sites/ESA/AITSL/CMS/trunk/AITSL/Mvc/Views/CHDatafileDetail/CHDatafileDetail.cshtml"
+		"/Users/valentin/Sites/ESA/AITSL/CMS/trunk/AITSL/public/research-item.html"
 	],
 	"find":
 	{
@@ -521,6 +562,7 @@
 		"case_sensitive": false,
 		"find_history":
 		[
+			"reduce",
 			"errors.form",
 			"editProfile.",
 			"register.",
@@ -647,8 +689,7 @@
 			"research-patterns",
 			"modalVideoSrc",
 			"_.tem",
-			"<span class=\"research-filter-type\">",
-			"inline-form"
+			"<span class=\"research-filter-type\">"
 		],
 		"highlight": true,
 		"in_selection": false,
@@ -794,39 +835,11 @@
 	"groups":
 	[
 		{
-			"selected": 3,
+			"selected": 1,
 			"sheets":
 			[
 				{
 					"buffer": 0,
-					"file": ".gitignore",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 720,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								280,
-								280
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/Text/Plain text.tmLanguage"
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 1,
-					"type": "text"
-				},
-				{
-					"buffer": 1,
 					"file": "spec/spec.coffee",
 					"semi_transient": false,
 					"settings":
@@ -838,8 +851,8 @@
 						"selection":
 						[
 							[
-								8463,
-								8466
+								152,
+								0
 							]
 						],
 						"settings":
@@ -849,44 +862,218 @@
 							"translate_tabs_to_spaces": true
 						},
 						"translation.x": 0.0,
-						"translation.y": 3264.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 2,
-					"type": "text"
-				},
-				{
-					"buffer": 2,
-					"file": "src/index.coffee",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 9868,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								9312,
-								9312
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/Better CoffeeScript/CoffeeScript.tmLanguage",
-							"tab_size": 2,
-							"translate_tabs_to_spaces": true
-						},
-						"translation.x": 0.0,
-						"translation.y": 3840.0,
+						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
 					"stack_index": 3,
 					"type": "text"
 				},
 				{
+					"buffer": 1,
+					"file": "src/index.coffee",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 13094,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								4695,
+								4695
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Better CoffeeScript/CoffeeScript.tmLanguage",
+							"tab_size": 2,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 1428.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 0,
+					"type": "text"
+				},
+				{
+					"buffer": 2,
+					"file": "build/index.js",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 14850,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								2797,
+								2797
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/JavaScript/JavaScript.tmLanguage",
+							"tab_size": 2,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 930.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 7,
+					"type": "text"
+				},
+				{
 					"buffer": 3,
+					"file": "src/N1qlIndexesChecker.coffee",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 2213,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								92,
+								92
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Better CoffeeScript/CoffeeScript.tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 5.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 8,
+					"type": "text"
+				},
+				{
+					"buffer": 4,
+					"file": "src/IndexModel.coffee",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 853,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								683,
+								683
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Better CoffeeScript/CoffeeScript.tmLanguage",
+							"tab_size": 2,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 1,
+					"type": "text"
+				},
+				{
+					"buffer": 5,
+					"file": "index.js",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 36,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								36,
+								0
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/JavaScript/JavaScript.tmLanguage",
+							"tab_size": 2,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 4,
+					"type": "text"
+				},
+				{
+					"buffer": 6,
+					"file": "tasks/coffee.coffee",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 245,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								245,
+								245
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Better CoffeeScript/CoffeeScript.tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 2,
+					"type": "text"
+				},
+				{
+					"buffer": 7,
+					"file": "Gruntfile.coffee",
+					"semi_transient": true,
+					"settings":
+					{
+						"buffer_size": 219,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								219,
+								0
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Better CoffeeScript/CoffeeScript.tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 5,
+					"type": "text"
+				},
+				{
+					"buffer": 8,
 					"file": "README.md",
 					"semi_transient": false,
 					"settings":
@@ -898,8 +1085,8 @@
 						"selection":
 						[
 							[
-								89,
-								89
+								197,
+								197
 							]
 						],
 						"settings":
@@ -910,24 +1097,24 @@
 						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 0,
+					"stack_index": 9,
 					"type": "text"
 				},
 				{
-					"buffer": 4,
+					"buffer": 9,
 					"file": "package.json",
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 1121,
+						"buffer_size": 1075,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								1121,
-								1121
+								908,
+								908
 							]
 						],
 						"settings":
@@ -940,7 +1127,7 @@
 						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 4,
+					"stack_index": 6,
 					"type": "text"
 				}
 			]

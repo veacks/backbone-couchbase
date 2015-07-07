@@ -239,8 +239,29 @@ module.exports = (options = {}) ->
           # Throw an error
           _error new Error "options.ids must be a String or an Array!"
         else
+          # Format the keys
+          formatedIds = _.map options.ids, (id) ->
+            # If a model have been set to the collection
+            if model.model?
+              # Create a temporary model to format the id url
+              tempModel = new model.model()
+              # If id is object (for compound urlRoots methods)
+              if _.isObject id
+                # Index all the object
+                tempModel.set id
+              else
+                # index the id as idAttribute
+                tempModel.set tempModel.idAttribute, id
+              # Return the formated key
+              return _keyFormat(tempModel.url())
+            # If there is no model
+            # If the model url is a function
+            return _keyFormat("#{model.url()}/#{id}") if _.isFunction model.url
+            # If the model url is a string
+            return _keyFormat("#{model.url}/#{id}")
+
           # Get a collection from a list of ids
-          bucket.getMulti options.ids, couchbase_callback
+          bucket.getMulti formatedIds, couchbase_callback
 
       # Read model or a collection by design document
       else if model.type is "designDocument"
