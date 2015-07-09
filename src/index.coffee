@@ -284,7 +284,7 @@ module.exports = (options = {}) ->
         query.keys(options.keys) if options.keys?
         query.limit(options.limit) if options.limit?
         query.on_error(options.on_error) if options.on_error?
-        query.range(options.range.start, options.range.end) if options.range?
+        query.range(options.range.start, options.range.end, options.inclusiveEnd) if options.range?
         query.order(options.order) if options.order?
         
         # If a model asking for query, implement with a reduce
