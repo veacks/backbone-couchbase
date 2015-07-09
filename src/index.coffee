@@ -278,13 +278,14 @@ module.exports = (options = {}) ->
         query.full_set(options.full_set) if options.full_set?
         query.group(options.group) if options.group?
         query.group_level(options.group_level) if options.group_level?
-        query.id_range(options.id_range) if options.id_range?
+        query.id_range(options.id_range.start, options.id_range.end) if options.id_range?
         query.include_docs(options.include_docs) if options.include_docs?
         query.key(options.key) if options.key?
         query.keys(options.keys) if options.keys?
         query.limit(options.limit) if options.limit?
         query.on_error(options.on_error) if options.on_error?
-        query.range(options.range) if options.range?
+        query.range(options.range.start, options.range.end) if options.range?
+        query.order(options.order) if options.order?
         
         # If a model asking for query, implement with a reduce
         if (not model.models? and not options.reduce?) or options.reduce

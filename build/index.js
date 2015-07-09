@@ -320,7 +320,7 @@
             query.group_level(options.group_level);
           }
           if (options.id_range != null) {
-            query.id_range(options.id_range);
+            query.id_range(options.id_range.start, options.id_range.end);
           }
           if (options.include_docs != null) {
             query.include_docs(options.include_docs);
@@ -338,7 +338,10 @@
             query.on_error(options.on_error);
           }
           if (options.range != null) {
-            query.range(options.range);
+            query.range(options.range.start, options.range.end);
+          }
+          if (options.order != null) {
+            query.order(options.order);
           }
           if (((model.models == null) && (options.reduce == null)) || options.reduce) {
             reducedView = true;
