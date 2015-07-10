@@ -141,6 +141,9 @@ module.exports = (options = {}) ->
     # @private
     ###
     couchbase_callback = (err, result) ->
+      def.promise.cbError = err
+      def.promise.cbResult = result
+      
       # Trace insertion
       if options.trace
         console.log "  - method:"
