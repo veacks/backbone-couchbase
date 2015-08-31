@@ -170,11 +170,14 @@ module.exports = (options = {}) ->
 
       # If collection result
       if _.isArray result
-        if reducedView and not model.models?
+        if reducedView and not options.group
           response = if result[0]? then result[0].value else 0
+        else if reducedView and options.group
+          response = []
+          response.push item.value[0] || item.value for item in result
         else
           response = []
-          response.push item.value for id, item in result
+          response.push item.value for item in result
       else if options.ids?
         response = []
         response.push item.value for id, item of result

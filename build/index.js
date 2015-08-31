@@ -177,7 +177,7 @@
        * @private
        */
       couchbase_callback = function(err, result) {
-        var id, item, response, _i, _len;
+        var id, item, response, _i, _j, _len, _len1;
         def.promise.cbError = err;
         def.promise.cbResult = result;
         if (options.trace) {
@@ -208,12 +208,18 @@
           return;
         }
         if (_.isArray(result)) {
-          if (reducedView && (model.models == null)) {
+          if (reducedView && !options.group) {
             response = result[0] != null ? result[0].value : 0;
+          } else if (reducedView && options.group) {
+            response = [];
+            for (_i = 0, _len = result.length; _i < _len; _i++) {
+              item = result[_i];
+              response.push(item.value[0] || item.value);
+            }
           } else {
             response = [];
-            for (item = _i = 0, _len = result.length; _i < _len; item = ++_i) {
-              id = result[item];
+            for (_j = 0, _len1 = result.length; _j < _len1; _j++) {
+              item = result[_j];
               response.push(item.value);
             }
           }
