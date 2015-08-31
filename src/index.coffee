@@ -170,7 +170,7 @@ module.exports = (options = {}) ->
 
       # If collection result
       if _.isArray result
-        if reducedView
+        if reducedView and not model.models?
           response = if result[0]? then result[0].value else 0
         else
           response = []

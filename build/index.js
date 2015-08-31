@@ -178,6 +178,8 @@
        */
       couchbase_callback = function(err, result) {
         var id, item, response, _i, _len;
+        def.promise.cbError = err;
+        def.promise.cbResult = result;
         if (options.trace) {
           console.log("  - method:");
           console.log(method);
@@ -206,7 +208,7 @@
           return;
         }
         if (_.isArray(result)) {
-          if (reducedView) {
+          if (reducedView && (model.models == null)) {
             response = result[0] != null ? result[0].value : 0;
           } else {
             response = [];
@@ -338,7 +340,7 @@
             query.on_error(options.on_error);
           }
           if (options.range != null) {
-            query.range(options.range.start, options.range.end);
+            query.range(options.range.start, options.range.end, options.inclusiveEnd);
           }
           if (options.order != null) {
             query.order(options.order);
