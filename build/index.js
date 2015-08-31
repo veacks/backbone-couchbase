@@ -214,7 +214,7 @@
             response = [];
             for (item = _i = 0, _len = result.length; _i < _len; item = ++_i) {
               id = result[item];
-              response.push(item.value[0]);
+              response.push(item.value);
             }
           }
         } else if (options.ids != null) {

@@ -174,7 +174,7 @@ module.exports = (options = {}) ->
           response = if result[0]? then result[0].value else 0
         else
           response = []
-          response.push item.value[0] for id, item in result
+          response.push item.value for id, item in result
       else if options.ids?
         response = []
         response.push item.value for id, item of result
