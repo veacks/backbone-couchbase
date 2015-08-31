@@ -212,9 +212,9 @@
             response = result[0] != null ? result[0].value : 0;
           } else {
             response = [];
-            for (_i = 0, _len = result.length; _i < _len; _i++) {
-              item = result[_i];
-              response.push(item.value);
+            for (item = _i = 0, _len = result.length; _i < _len; item = ++_i) {
+              id = result[item];
+              response.push(item.value[0]);
             }
           }
         } else if (options.ids != null) {
