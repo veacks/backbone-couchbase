@@ -223,7 +223,7 @@
               response.push(item.value);
             }
           }
-        } else if (options.ids != null) {
+        } else if ((options.ids != null) || (option.docIds != null)) {
           response = [];
           for (id in result) {
             item = result[id];

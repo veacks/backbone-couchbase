@@ -178,7 +178,7 @@ module.exports = (options = {}) ->
         else
           response = []
           response.push item.value for item in result
-      else if options.ids?
+      else if options.ids? or option.docIds?
         response = []
         response.push item.value for id, item of result
       # Else if model
