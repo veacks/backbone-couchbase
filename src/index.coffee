@@ -428,6 +428,7 @@ module.exports = (options = {}) ->
       bucket = cluster.openBucket options.connection.bucket, options.connection.password, connectionCb
     else
       bucket = cluster.openBucket options.connection.bucket, connectionCb
+    bucket.operationTimeout = (options.connection.timeout || 60) * 1000
   
   # Error formating
   httpError = options.httpError || true

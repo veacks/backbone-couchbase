@@ -480,6 +480,7 @@
       } else {
         bucket = cluster.openBucket(options.connection.bucket, connectionCb);
       }
+      bucket.operationTimeout = (options.connection.timeout || 60) * 1000;
     }
     httpError = options.httpError || true;
     sep = options.sep || "::";
